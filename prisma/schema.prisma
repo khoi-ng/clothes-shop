@@ -1,0 +1,57 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+enum Genders {
+  MEN
+  WOMEN
+}
+
+model Gender {
+  id                 String              @id @default(cuid())
+  name               Genders             @unique
+  categories         Category[]
+  featuredCollection FeaturedCollection?
+  updatedAt          DateTime            @updatedAt
+}
+
+model Category {
+  id         String    @id @default(cuid())
+  name       String
+  gender     Gender    @relation(fields: [genderName], references: [name])
+  genderName Genders
+  products   Product[]
+
+  @@index([genderName])
+}
+
+// store the image uri from cloudinary, images are not directly saved in my db
+model Product {
+  id                   String              @id @default(cuid())
+  name                 String
+  categorie            Category            @relation(fields: [categoryId], references: [id])
+  categoryId           String
+  imageUrl             String
+  featuredCollection   FeaturedCollection? @relation(fields: [featuredCollectionId], references: [id])
+  featuredCollectionId String?
+  createdAt            DateTime            @default(now())
+
+  @@index([categoryId])
+}
+
+model FeaturedCollection {
+  id        String    @id @default(cuid())
+  name      String
+  products  Product[]
+  gender    Gender?   @relation(fields: [genderId], references: [id])
+  genderId  String?   @unique
+  updatedAt DateTime  @updatedAt
+}

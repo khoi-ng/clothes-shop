@@ -11,7 +11,7 @@ export type CATEGORY = {
 export const GENDERS: Gender[] = ['men', 'women'];
 
 export const CATEGORIES: CATEGORY[] = [
-  { id: 0, displayTitle: 'T-shirt & Tops', pathName: '0' },
+  { id: 0, displayTitle: 'T-Shirts & Tops', pathName: '0' },
   { id: 1, displayTitle: 'Pants/Shorts', pathName: '1' },
   { id: 2, displayTitle: 'Jackets & Coats', pathName: '2' },
   { id: 3, displayTitle: 'Hoodes & Sweatshirts', pathName: '3' },
