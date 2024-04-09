@@ -1,8 +1,6 @@
 import Header from '@/components/LandingPage/Header';
 import Featured from '@/components/LandingPage/Featured';
 
-import '../styles/landingpage.scss';
-
 import prisma from '@/db/prisma';
 
 const getFeaturedProducts = async () => {

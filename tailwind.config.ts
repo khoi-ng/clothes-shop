@@ -28,6 +28,9 @@ const config: Config = {
       textColor: {
         headeryellow: '#ECA914',
       },
+      backgroundColor: {
+        landing3: '#A09999',
+      },
     },
   },
   plugins: [],

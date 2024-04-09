@@ -4,6 +4,7 @@ import { thumbnail } from '@cloudinary/url-gen/actions/resize';
 import { FaShoppingCart } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
 import cloudinary from '@/db/cloudinary';
+import './Header.scss';
 
 const Header = () => {
   const myCld = cloudinary;

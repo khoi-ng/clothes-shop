@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 import { FeaturedProduct } from '@/interfaces';
 import cloudinary from '@/db/cloudinary';
@@ -60,7 +61,7 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
   }, []);
 
   return (
-    <div className='w-9/12'>
+    <div className='w-10/12'>
       <Swiper
         effect={'coverflow'}
         grabCursor={true}
@@ -99,8 +100,12 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
         {!isLoading && swiperSlides?.map((slide) => slide)}
 
         <div className='slider-controler'>
-          <div className='swiper-button-prev slider-arrow'></div>
-          <div className='swiper-button-next slider-arrow'></div>
+          <div className='swiper-button-prev slider-arrow'>
+            <MdKeyboardArrowLeft />
+          </div>
+          <div className='swiper-button-next slider-arrow'>
+            <MdKeyboardArrowRight />
+          </div>
           {/* <div className='swiper-pagination'></div> */}
         </div>
       </Swiper>

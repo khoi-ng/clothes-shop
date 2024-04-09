@@ -9,8 +9,14 @@ section.feature-landing {
     #19171a 50%,
     #19171a 100%
   );
-}
-.header-title {
-  font-size: 6rem;
-  font-size: 10.45vh;
+  --svg-height: 265px;
+
+  .svg-content-seperator {
+    // height: 6.2vw;
+    height: calc(var(--svg-height) / 2 - 12.5px);
+    // background-color: red;
+  }
+  svg {
+    height: var(--svg-height);
+  }
 }

@@ -30,20 +30,29 @@
 }
 
 .swiper_container {
-  max-width: 80vw;
+  max-width: 90vw;
   .swiper-button-prev {
     &:after {
-      color: aliceblue;
-      font-weight: 700;
+      // color: aliceblue;
+      // font-weight: 700;
+      display: none;
     }
-    left: calc(44% - 8rem) !important;
+    svg {
+      color: aliceblue;
+    }
+    height: 110px;
+    width: 110px;
+    left: calc(50% - 14rem) !important;
   }
   .swiper-button-next {
     &:after {
-      color: aliceblue;
-      font-weight: 700;
+      // color: aliceblue;
+      // font-weight: 700;
+      display: none;
     }
-    right: calc(44% - 8rem) !important;
+    height: 110px;
+    width: 110px;
+    right: calc(50% - 14rem) !important;
   }
   .swiper-wrapper {
     align-items: end !important;
