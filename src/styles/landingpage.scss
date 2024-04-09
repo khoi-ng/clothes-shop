@@ -1,0 +1,16 @@
+section.feature-landing {
+  // splitting page into different colors
+  // https://medium.com/@miguelznunez/html-css-how-to-split-a-background-into-2-colors-1cdc394deb3d
+
+  background: linear-gradient(
+    to right,
+    #727670 0%,
+    #727670 50%,
+    #19171a 50%,
+    #19171a 100%
+  );
+}
+.header-title {
+  font-size: 6rem;
+  font-size: 10.45vh;
+}

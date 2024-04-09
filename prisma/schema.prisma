@@ -43,6 +43,8 @@ model Product {
   featuredCollection   FeaturedCollection? @relation(fields: [featuredCollectionId], references: [id])
   featuredCollectionId String?
   createdAt            DateTime            @default(now())
+  description          String?
+  price                Decimal
 
   @@index([categoryId])
 }

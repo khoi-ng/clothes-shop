@@ -6,6 +6,8 @@ import { Cloudinary } from '@cloudinary/url-gen';
 import { thumbnail } from '@cloudinary/url-gen/actions/resize';
 import { FaShoppingCart } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
+import '../styles/landingpage.scss';
+import SwiperSlideCarousel from '@/components/Swiper/SwiperSlideCarousel';
 
 export default function Home() {
   const myCld = new Cloudinary({
@@ -25,7 +27,6 @@ export default function Home() {
 
   return (
     // Landing page
-
     <main className=''>
       <header className='w-full h-screen '>
         <nav className='fixed flex text-white w-full bg-transparent z-4 justify-between z-30 items-center h-24 px-24 '>
@@ -62,7 +63,7 @@ export default function Home() {
           </div>
         </nav>
 
-        <section className='w-full h-screen bg-black'>
+        <section className='w-full h-full bg-black'>
           <div className='flex items-end'>
             <AdvancedImage
               className='h-2/5 w-auto absolute right-1/4 bottom-0'
@@ -79,7 +80,7 @@ export default function Home() {
               cldImg={mainHeaderImg}
               plugins={[responsive()]}
             />
-            <div className='absolute -rotate-[95deg] text-8xl -left-20 bottom-1/3 text-white z-10 font-oswald font-normal'>
+            <div className='header-title absolute -rotate-[95deg] -left-20 bottom-1/3 text-white z-10 font-oswald font-normal'>
               <h1>
                 L
                 <span className='text-headeryellow font-oswald font-normal'>
@@ -92,7 +93,7 @@ export default function Home() {
           </div>
         </section>
       </header>
-      <section className='w-full'>
+      <section className='feature-landing w-full h-auto'>
         <div className='relative w-full h-auto'>
           <svg
             className='w-full absolute h-auto -translate-y-1/2'
@@ -109,6 +110,9 @@ export default function Home() {
               fill='#737771'
             />
           </svg>
+        </div>
+        <div className='h-full w-full flex items-center justify-center  relative py-20'>
+          <SwiperSlideCarousel />
         </div>
       </section>
     </main>

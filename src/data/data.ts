@@ -18,13 +18,13 @@ export const CATEGORIES: CATEGORY[] = [
   { id: 4, displayTitle: 'Accessoires', pathName: '4' },
   { id: 5, displayTitle: 'Underwear', pathName: '5' },
   { id: 6, displayTitle: 'Blazer', pathName: '6' },
+  { id: 7, displayTitle: 'Bags', pathName: '7' },
 ];
 
 export const MEN_CATEGORIES: CATEGORY[] = [...CATEGORIES];
 export const WOMEN_CATEGORIES: CATEGORY[] = [
   ...CATEGORIES,
-  { id: 7, displayTitle: 'Dress', pathName: '7' },
-  { id: 8, displayTitle: 'Skirts', pathName: '8' },
+  { id: 8, displayTitle: 'Dress & Skirt', pathName: '8' },
 ];
 
 export const MEN_ITEMS = [
