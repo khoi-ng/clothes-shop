@@ -1,12 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  EffectCoverflow,
-} from 'swiper/modules';
+import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 import './SwiperSlideCarousel.scss';
 
 // Import Swiper styles
@@ -14,12 +8,59 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import img from '../../assets/img/header/7024d0ee594897127b214835bf254151.png';
-import Image from 'next/image';
 
-const SwiperSlideCarousel = () => {
+import { FeaturedProduct } from '@/interfaces';
+import cloudinary from '@/db/cloudinary';
+import { AdvancedImage, responsive } from '@cloudinary/react';
+import {
+  // fit, fill,
+  pad,
+} from '@cloudinary/url-gen/actions/resize';
+
+const SwiperSlideCarousel = ({ items }: { items: string }) => {
+  const myCld = cloudinary;
+
+  const itemsObj: FeaturedProduct[] | undefined = JSON.parse(items);
+
+  const [swiperSlides, setSwiperSlides] = useState<
+    React.JSX.Element[] | undefined
+  >();
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  useEffect(() => {
+    const swiperSliders = itemsObj?.map((item, i) => {
+      const newItemImg = myCld.image(item.imageUrl).format('auto');
+      newItemImg.resize(pad(500, 666));
+
+      // newItemImg.resize(fit(400, 400));
+      // newItemImg.resize(pad(800, 900));
+      // thumbnail().height(300)).format('auto');
+
+      const price = JSON.parse(JSON.stringify(item.price));
+
+      return (
+        <SwiperSlide key={`carousel-${i}`}>
+          <AdvancedImage
+            cldImg={newItemImg}
+            plugins={[responsive()]}
+            alt='slide_image'
+          />
+          <div className='short_description py-3.5 flex items-center justify-center relative '>
+            <h2 className='text-3xl overflow-ellipsis leading-10'>
+              {item.name}
+            </h2>
+            <h3 className='text-3xl'>{`${price} €`}</h3>
+          </div>
+        </SwiperSlide>
+      );
+    });
+
+    setSwiperSlides(swiperSliders);
+    setIsLoading(false);
+  }, []);
+
   return (
-    <div className='container'>
+    <div className='w-9/12'>
       <Swiper
         effect={'coverflow'}
         grabCursor={true}
@@ -55,55 +96,7 @@ const SwiperSlideCarousel = () => {
           },
         }}
       >
-        <SwiperSlide>
-          <Image src={img} alt='slide_image' />
-          <div className='short_description'>
-            <h2>Title</h2>
-            <h3>price</h3>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={img} alt='slide_image' />
-          <div className='short_description'>
-            <h2>Title</h2>
-            <h3>price</h3>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={img} alt='slide_image' />
-          <div className='short_description'>
-            <h2>Title</h2>
-            <h3>price</h3>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={img} alt='slide_image' />
-          <div className='short_description'>
-            <h2>Title</h2>
-            <h3>price</h3>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={img} alt='slide_image' />
-          <div className='short_description'>
-            <h2>Title</h2>
-            <h3>price</h3>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={img} alt='slide_image' />
-          <div className='short_description'>
-            <h2>Title</h2>
-            <h3>price</h3>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={img} alt='slide_image' />
-          <div className='short_description'>
-            <h2>Title</h2>
-            <h3>price</h3>
-          </div>
-        </SwiperSlide>
+        {!isLoading && swiperSlides?.map((slide) => slide)}
 
         <div className='slider-controler'>
           <div className='swiper-button-prev slider-arrow'></div>

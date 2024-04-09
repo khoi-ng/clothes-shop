@@ -14,7 +14,7 @@ export const CATEGORIES: CATEGORY[] = [
   { id: 0, displayTitle: 'T-Shirts & Tops', pathName: '0' },
   { id: 1, displayTitle: 'Pants/Shorts', pathName: '1' },
   { id: 2, displayTitle: 'Jackets & Coats', pathName: '2' },
-  { id: 3, displayTitle: 'Hoodes & Sweatshirts', pathName: '3' },
+  { id: 3, displayTitle: 'Hoodies & Sweatshirts', pathName: '3' },
   { id: 4, displayTitle: 'Accessoires', pathName: '4' },
   { id: 5, displayTitle: 'Underwear', pathName: '5' },
   { id: 6, displayTitle: 'Blazer', pathName: '6' },

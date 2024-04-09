@@ -31,4 +31,33 @@
 
 .swiper_container {
   max-width: 80vw;
+  .swiper-button-prev {
+    &:after {
+      color: aliceblue;
+      font-weight: 700;
+    }
+    left: calc(44% - 8rem) !important;
+  }
+  .swiper-button-next {
+    &:after {
+      color: aliceblue;
+      font-weight: 700;
+    }
+    right: calc(44% - 8rem) !important;
+  }
+  .swiper-wrapper {
+    align-items: end !important;
+    // .swiper-slide:first-child {
+    //   opacity: 0;
+    // }
+    .swiper-slide-visible {
+      opacity: 1;
+      transition: opacity 0.5s ease-in !important;
+    }
+
+    .swiper-slide:not(.swiper-slide-visible) {
+      opacity: 0;
+      transition: opacity 0.5s ease-in !important;
+    }
+  }
 }
