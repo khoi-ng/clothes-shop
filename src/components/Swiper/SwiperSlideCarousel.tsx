@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 import './SwiperSlideCarousel.scss';
 
@@ -28,6 +28,7 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
   >();
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const swiperSliders = itemsObj?.map((item, i) => {
       const newItemImg = myCld.image(item.imageUrl).format('auto');
@@ -40,17 +41,18 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
       const price = JSON.parse(JSON.stringify(item.price));
 
       return (
-        <SwiperSlide key={`carousel-${i}`}>
+        <SwiperSlide key={`carousel-${i}`} id={`carousel-slider-${i}`}>
           <AdvancedImage
             cldImg={newItemImg}
             plugins={[responsive()]}
             alt='slide_image'
           />
-          <div className='short_description py-3.5 flex items-center justify-center relative '>
+          <div className='short_description py-3.5 flex items-center justify-center relative font-oswald'>
             <h2 className='text-3xl overflow-ellipsis leading-10'>
               {item.name}
             </h2>
             <h3 className='text-3xl'>{`${price} €`}</h3>
+            <div className='opacity-0 hidden '>description</div>
           </div>
         </SwiperSlide>
       );
@@ -59,6 +61,25 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
     setSwiperSlides(swiperSliders);
     setIsLoading(false);
   }, []);
+
+  const currentActiveIndex = useRef(-1);
+  const [activeInfo, setActiveInfo] = useState<{
+    title: string;
+    description: string | null;
+  }>({ title: '', description: '' });
+
+  function showCurrentSwiperInfo(swiper: SwiperClass) {
+    if (itemsObj && currentActiveIndex.current !== swiper.realIndex) {
+      const currentItem = itemsObj[swiper.realIndex];
+      const content = {
+        title: currentItem.name,
+        description: currentItem.description,
+      };
+      currentActiveIndex.current = swiper.realIndex;
+      setActiveInfo(content);
+      // console.log(currentActiveIndex.current);
+    }
+  }
 
   return (
     <div className='w-10/12'>
@@ -73,6 +94,9 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
           stretch: 0,
           depth: 100,
           modifier: 2.5,
+        }}
+        onActiveIndexChange={(swiper) => {
+          showCurrentSwiperInfo(swiper);
         }}
         pagination={{ el: '.swiper-pagination', clickable: true }}
         navigation={{
@@ -109,6 +133,19 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
           {/* <div className='swiper-pagination'></div> */}
         </div>
       </Swiper>
+
+      <article className='flex w-full items-end justify-end top-2 -right-10 2xl:absolute 2xl:top-16 2xl:right-14 '>
+        <div className=' flex flex-col text-white h-40 border rounded-md p-2 my-3 font-oswald  2xl:absolute 2xl:w-1/3 2xl:max-h-40 relative overflow-hidden'>
+          <div className='max-h-28 h-28 pb-1 overflow-hidden'>
+            <h3 className='text-3xl'>{activeInfo.title}</h3>
+            <div>{activeInfo.description}</div>
+          </div>
+
+          <button className='self-end justify-self-end hover:bg-sky-700'>
+            See more
+          </button>
+        </div>
+      </article>
     </div>
   );
 };

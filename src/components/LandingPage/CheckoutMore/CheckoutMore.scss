@@ -1,0 +1,12 @@
+section.landing-check-more {
+  --svg-height: 265px;
+
+  .svg-content-seperator {
+    // height: 6.2vw;
+    height: calc(var(--svg-height) / 2 - 12.5px);
+    // background-color: red;
+  }
+  svg {
+    height: var(--svg-height);
+  }
+}

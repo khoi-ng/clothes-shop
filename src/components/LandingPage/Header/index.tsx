@@ -19,7 +19,7 @@ const Header = () => {
   headerImg3.resize(thumbnail().width(900)).format('auto');
 
   return (
-    <header className='w-full h-screen '>
+    <header className='landing-header w-full h-screen '>
       <nav className='fixed flex text-white w-full bg-transparent z-4 justify-between z-30 items-center h-24 px-24 '>
         <a href='' className='text-5xl text-white flex gap-x-4 font-rocknroll'>
           Clothes
