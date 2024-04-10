@@ -1,5 +1,5 @@
 'use client';
-import { GENDERS } from '@/data/data';
+
 import { usePathname } from 'next/navigation';
 
 export default function Products() {
@@ -7,11 +7,6 @@ export default function Products() {
   return (
     <>
       <h2> Products</h2>
-      {GENDERS.map((gender, index) => (
-        <div key={`products-${gender}-link-${index}`}>
-          <a href={`${pathname}/${gender}`}>{gender}</a>
-        </div>
-      ))}
     </>
   );
 }
