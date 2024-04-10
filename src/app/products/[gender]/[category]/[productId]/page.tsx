@@ -30,7 +30,7 @@ export default async function Category({
 }) {
   const product = await getProduct(params.productId);
   if (product) {
-    const productObj: Products | null = JSON.parse(JSON.stringify(product));
+    const productObj: Products = JSON.parse(JSON.stringify(product));
 
     return (
       <section className='bg-black pt-24 text-white px-24'>
