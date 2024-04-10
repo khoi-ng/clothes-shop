@@ -29,6 +29,7 @@ model Category {
   gender     Gender    @relation(fields: [genderName], references: [name])
   genderName Genders
   products   Product[]
+  uriName    String?
 
   @@index([genderName])
 }

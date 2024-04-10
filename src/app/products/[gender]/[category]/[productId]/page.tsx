@@ -1,25 +1,43 @@
-'use client';
+import { notFound } from 'next/navigation';
+import prisma from '@/db/prisma';
+import cloudinary from '@/db/cloudinary';
+import { thumbnail } from '@cloudinary/url-gen/actions/resize';
+import { AdvancedImage, responsive } from '@cloudinary/react';
+import ProductComponent from '../../../../../components/ProductComponent/ProductComponent';
+import { Products } from '@/interfaces';
 
-import { notFound, useParams } from 'next/navigation';
-import { Gender, getOneProduct, existCategory } from '../../../../../data/data';
+const getProduct = async (id: string) => {
+  const product = await prisma.product.findFirst({
+    where: {
+      id: id,
+    },
+    select: {
+      id: true,
+      name: true,
+      imageUrl: true,
+      description: true,
+      price: true,
+      createdAt: true,
+    },
+  });
+  return product;
+};
 
-export default function Category() {
-  const params = useParams<{
-    gender: Gender;
-    productId: string;
-    category: string;
-  }>();
+export default async function Category({
+  params,
+}: {
+  params: { gender: string; category: string; productId: string };
+}) {
+  const product = await getProduct(params.productId);
+  if (product) {
+    const productObj: Products | null = JSON.parse(JSON.stringify(product));
 
-  const gender = params.gender;
-  const product = getOneProduct(gender, params.productId);
-
-  if (!existCategory(params.category, gender) || !product) {
-    notFound();
+    return (
+      <section className='bg-black pt-24 text-white px-24'>
+        <h2 className='text-4xl'>Product {product.name}</h2>
+        <ProductComponent product={productObj} />
+      </section>
+    );
   }
-
-  return (
-    <h2>
-      {gender} Product {product.name}
-    </h2>
-  );
+  notFound();
 }

@@ -1,37 +1,66 @@
-'use client';
+import NotFound from '@/app/not-found';
+import prisma from '@/db/prisma';
+import { Category, GENDER } from '@/interfaces';
 
-import { notFound, useParams, usePathname } from 'next/navigation';
-import {
-  Gender,
-  getCategory,
-  getAllProductsByCategory,
-} from '../../../../data/data';
+const getCategoryByGender = async (gender: GENDER, uri: string) => {
+  const genderFromDB = await prisma.category.findFirst({
+    where: {
+      uriName: uri,
+      genderName: gender,
+    },
+    include: {
+      products: {
+        select: {
+          id: true,
+          name: true,
+          imageUrl: true,
+          description: true,
+          price: true,
+        },
+      },
+    },
+  });
+  return genderFromDB;
+};
 
-export default function Category() {
-  const params = useParams<{ gender: Gender; category: string }>();
-  const gender = params.gender;
-  const category = getCategory(gender, params.category);
-  const products = getAllProductsByCategory(gender, params.category);
-  const pathname = usePathname();
+export default async function CategoryPage({
+  params,
+}: {
+  params: { gender: string; category: string };
+}) {
+  const genderLowerCase = params.gender;
+  const gender = genderLowerCase.toLocaleUpperCase();
+  if (gender === 'MEN' || gender === 'WOMEN') {
+    const category = await getCategoryByGender(gender, params.category);
+    const categoriesObject: Category | null = await JSON.parse(
+      JSON.stringify(category)
+    );
 
-  if (!category) {
-    notFound();
+    if (!category || !categoriesObject) {
+      NotFound();
+      return;
+    }
+
+    return (
+      <section className='bg-black pt-24 text-white'>
+        <h2 className='text-6xl'>
+          {gender} Category {categoriesObject.name} Products
+        </h2>
+        {categoriesObject?.products?.map((product, index) => (
+          <div
+            key={`${genderLowerCase}-category-item-${index}-${product.name}-div`}
+          >
+            <a
+              href={`${categoriesObject.uriName}/${product.id}`}
+              key={`${genderLowerCase}-category-item-${index}-${product.name}`}
+            >
+              {product.name}
+            </a>
+          </div>
+        ))}
+      </section>
+    );
   }
 
-  return (
-    <div>
-      <h2>
-        {gender} Category {category.displayTitle}
-      </h2>
-
-      {products?.map((product, index) => (
-        <a
-          href={`${pathname}/${product.id}`}
-          key={`${gender}-category-items-${index}-${product.name}`}
-        >
-          {product.name}
-        </a>
-      ))}
-    </div>
-  );
+  NotFound();
 }
