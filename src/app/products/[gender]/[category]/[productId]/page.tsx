@@ -33,8 +33,8 @@ export default async function Category({
     const productObj: Products = JSON.parse(JSON.stringify(product));
 
     return (
-      <section className='bg-black pt-24 text-white px-24'>
-        <h2 className='text-4xl'>Product {product.name}</h2>
+      <section className=' text-black mx-10'>
+        <h2 className='text-4xl pb-4'>Product {product.name}</h2>
         <ProductComponent product={productObj} />
       </section>
     );

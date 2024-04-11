@@ -3,6 +3,7 @@ import Featured from '@/components/LandingPage/Featured';
 
 import prisma from '@/db/prisma';
 import CheckoutMore from '@/components/LandingPage/CheckoutMore/CheckoutMore';
+import Navbar from '@/components/Navbar';
 
 const getFeaturedProducts = async () => {
   const featuredProducts = await prisma.featuredCollection.findFirst({
@@ -29,6 +30,7 @@ export default async function Home() {
   return (
     // Landing page
     <main className=''>
+      <Navbar />
       <Header />
       <Featured featuredProducts={JSON.stringify(featuredProducts?.products)} />
       <CheckoutMore />

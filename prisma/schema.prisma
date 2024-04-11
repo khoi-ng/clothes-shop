@@ -21,6 +21,7 @@ model Gender {
   categories         Category[]
   featuredCollection FeaturedCollection?
   updatedAt          DateTime            @updatedAt
+  bannerUrls         String[]
 }
 
 model Category {
@@ -30,6 +31,7 @@ model Category {
   genderName Genders
   products   Product[]
   uriName    String?
+  bentoUrls  String[]
 
   @@index([genderName])
 }

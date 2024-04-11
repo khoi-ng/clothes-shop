@@ -1,6 +1,8 @@
 import { notFound, useParams, usePathname } from 'next/navigation';
 import prisma from '@/db/prisma';
 import { GENDER, Gender } from '@/interfaces';
+import BentoCategoryCard from '@/components/BentoCategoryCard/BentoCategoryCard';
+import Banner from '@/components/Banner';
 
 const getGenderCategories = async (gender: GENDER) => {
   const genderFromDB = await prisma.gender.findFirst({
@@ -14,6 +16,7 @@ const getGenderCategories = async (gender: GENDER) => {
           name: true,
           genderName: true,
           uriName: true,
+          bentoUrls: true,
         },
       },
     },
@@ -30,39 +33,27 @@ export default async function GenderFashionPage({
   if (genderName === 'MEN' || genderName === 'WOMEN') {
     const categories = await getGenderCategories(genderName);
 
-    const categoriesObject: Gender | null = await JSON.parse(
+    const genderObject: Gender | null = await JSON.parse(
       JSON.stringify(categories)
     );
+    console.log(genderObject?.bannerUrls);
 
     return (
-      <section className='pt-24 bg-black text-white'>
-        {categoriesObject?.categories?.map((category, index) => (
-          <div key={`${category}-categories-${index}`}>
-            <a href={`/products/${params.gender}/${category.uriName}`}>
-              {category.name}
-            </a>
-          </div>
-        ))}
+      <section className=' text-black mx-10'>
+        <Banner />
+        <h2 className='text-4xl pb-4'>{genderName}&apos;s Fashion</h2>
+        <article className='flex flex-wrap gap-4'>
+          {genderObject?.categories?.map((category, index) => (
+            <BentoCategoryCard
+              category={category}
+              url={`/products/${params.gender}/${category.uriName}`}
+              key={`${category}-categories-${index}`}
+            />
+          ))}
+        </article>
       </section>
     );
   }
-  // const pathname = await usePathname();
-
-  //   const categories = await getGenderCategories(gender);
-
-  //   if (categories) {
-  //     return (
-  //       <section className='pt-20 bg-black text-white'>
-  //         {categories.map((category, index) => (
-  //           <div key={`${gender}-categories-${index}`}>
-  //             <a href={`${pathname}/${category.pathName}`}>
-  //               {category.displayTitle}
-  //             </a>
-  //           </div>
-  //         ))}
-  //       </section>
-  //     );
-  //   }
 
   notFound();
 }

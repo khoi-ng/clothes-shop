@@ -1,4 +1,5 @@
 import NotFound from '@/app/not-found';
+import ProductCard from '@/components/ProductCard';
 import prisma from '@/db/prisma';
 import { Category, GENDER } from '@/interfaces';
 
@@ -42,22 +43,19 @@ export default async function CategoryPage({
     }
 
     return (
-      <section className='bg-black pt-24 text-white'>
-        <h2 className='text-6xl'>
-          {gender} Category {categoriesObject.name} Products
+      <section className=' text-black mx-10'>
+        <h2 className='text-4xl pb-4'>
+          {gender}&apos;s {categoriesObject.name}
         </h2>
-        {categoriesObject?.products?.map((product, index) => (
-          <div
-            key={`${genderLowerCase}-category-item-${index}-${product.name}-div`}
-          >
-            <a
-              href={`${categoriesObject.uriName}/${product.id}`}
-              key={`${genderLowerCase}-category-item-${index}-${product.name}`}
-            >
-              {product.name}
-            </a>
-          </div>
-        ))}
+        <article className='flex flex-wrap gap-4'>
+          {categoriesObject?.products?.map((product, index) => (
+            <ProductCard
+              product={product}
+              url={`${categoriesObject.uriName}/${product.id}`}
+              key={`${genderLowerCase}-category-item-${index}-${product.name}-div`}
+            />
+          ))}
+        </article>
       </section>
     );
   }
