@@ -23,7 +23,7 @@ const CategorySideNav = ({ genderObject }: { genderObject: Gender }) => {
         style={isHidden ? { display: 'none' } : { display: 'block' }}
       >
         <h2 className='text-2xl pb-2 bold relative flex'>
-          Categories
+          <a href={`/products/${gender}`}>Categories</a>
           <div className='absolute text-2xl -right-10 -top-2 '>
             <button onClick={() => setIsHidden(true)}>
               <IoMdClose />

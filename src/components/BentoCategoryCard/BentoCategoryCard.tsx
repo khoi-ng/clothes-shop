@@ -27,7 +27,7 @@ const BentoCategoryCard = ({
     w-300px 
     h-200px 
     border 
-    rounded 
+    rounded-lg
     flex 
     items-center 
     justify-center
