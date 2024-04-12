@@ -102,11 +102,11 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
           modifier: 2.5,
         }}
         speed={120}
-        autoplay={{
-          delay: 7000,
-          disableOnInteraction: true,
-          reverseDirection: false,
-        }}
+        // autoplay={{
+        //   delay: 7000,
+        //   disableOnInteraction: true,
+        //   reverseDirection: false,
+        // }}
         onActiveIndexChange={(swiper) => {
           showCurrentSwiperInfo(swiper);
         }}

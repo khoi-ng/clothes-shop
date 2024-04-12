@@ -28,7 +28,11 @@ const Featured = ({ featuredProducts }: { featuredProducts: string }) => {
         },
         scrollTrigger: {
           trigger: '.feature-landing',
-          start: 'top 78%',
+          // start: 'top 78%',
+          start: 'top 80%',
+          end: 'center 50%',
+          scrub: true,
+          // markers: true,
         },
       })
       .to(['#newCollectionTitleBg'], {
@@ -60,7 +64,6 @@ const Featured = ({ featuredProducts }: { featuredProducts: string }) => {
           start: 'top 65%',
         },
       })
-
       .to(
         ['.feature-carousel-wrapper'],
         {

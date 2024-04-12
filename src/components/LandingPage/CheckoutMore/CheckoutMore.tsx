@@ -8,6 +8,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { HoverImageEffect } from '@/components/HoverImageEffect/HoverImageEffect';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -155,12 +156,23 @@ const CheckoutMore = () => {
                   Men Fashion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </h2>
               </div>
-              <a className='max-h-700px  w-auto' href='/products/men'>
+              <a
+                className='max-h-700px  w-auto relative saturate-0 hover:saturate-100 transition ease-in-out duration-500'
+                href='/products/men'
+                id='menFashionImgLink'
+              >
                 <Image
-                  className='max-h-700px  w-auto'
+                  className='max-h-700px  w-auto invisible'
                   src={menImg}
                   alt='men'
                 ></Image>
+
+                <HoverImageEffect
+                  className='w-full h-full top-0 !absolute'
+                  img={menImg}
+                  aspectRatio={[1, 1.5]}
+                  parentId='menFashionImgLink'
+                ></HoverImageEffect>
               </a>
             </div>
 
@@ -170,12 +182,23 @@ const CheckoutMore = () => {
                   Women Fashion
                 </h2>
               </div>
-              <a className='max-h-700px  w-auto' href='/products/women'>
+              <a
+                className='max-h-700px  w-auto relative saturate-0 hover:saturate-100 transition ease-in-out duration-500'
+                href='/products/women'
+                id='womenFashionImgLink'
+              >
                 <Image
-                  className='max-h-700px w-auto'
+                  className='max-h-700px  w-auto invisible'
                   src={womenImg}
                   alt='women'
                 ></Image>
+
+                <HoverImageEffect
+                  className='w-full h-full top-0 !absolute'
+                  img={womenImg}
+                  aspectRatio={[1, 1.5]}
+                  parentId='womenFashionImgLink'
+                ></HoverImageEffect>
               </a>
             </div>
           </div>
