@@ -51,7 +51,7 @@ export default async function RootLayout({
     if (genderObject) {
       return (
         <html lang='en'>
-          <body>
+          <body className='bg-slate-50'>
             {/* <Navbar /> */}
 
             <section className='mx-24 pt-36'>

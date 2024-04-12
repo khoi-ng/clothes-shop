@@ -6,7 +6,7 @@ import './Featured.scss';
 
 const index = ({ featuredProducts }: { featuredProducts: string }) => {
   return (
-    <section className='feature-landing w-full h-auto pb-28 '>
+    <section className='feature-landing w-full h-auto pb-28 relative z-1'>
       <div className='svg-content-seperator text-9xl relative z-10'>
         <div className='relative w-full '>
           <svg

@@ -18,7 +18,7 @@ const ProductCard = ({ product, url }: { product: Products; url: string }) => {
       className='bg-white 
         w-300px 
         h-380px 
-        border 
+        
         rounded 
         p-5
         items-center 

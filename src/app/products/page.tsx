@@ -1,12 +1,11 @@
-'use client';
-
-import { usePathname } from 'next/navigation';
+import GridImageCanvas from '@/components/GridImageCanvas/GridImageCanvas';
 
 export default function Products() {
-  const pathname = usePathname();
   return (
-    <>
-      <h2> Products</h2>
-    </>
+    <section>
+      <article className=' mt-24'>
+        <GridImageCanvas />
+      </article>
+    </section>
   );
 }

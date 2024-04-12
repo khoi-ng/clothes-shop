@@ -135,10 +135,14 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
       </Swiper>
 
       <article className='flex w-full items-end justify-end top-2 -right-10 2xl:absolute 2xl:top-16 2xl:right-14 '>
-        <div className=' flex flex-col text-white h-40 border rounded-md p-2 my-3 font-oswald  2xl:absolute 2xl:w-1/3 2xl:max-h-40 relative overflow-hidden'>
+        <div className=' flex flex-col text-white h-40 border rounded-md p-2 my-3 font-oswald w-full 2xl:absolute 2xl:w-1/3 2xl:max-h-40 relative overflow-hidden'>
           <div className='max-h-28 h-28 pb-1 overflow-hidden'>
             <h3 className='text-3xl'>{activeInfo.title}</h3>
-            <div>{activeInfo.description}</div>
+            <div>
+              {activeInfo.description
+                ? activeInfo.description
+                : '- No Description yet -'}
+            </div>
           </div>
 
           <button className='self-end justify-self-end hover:bg-sky-700'>
