@@ -8,7 +8,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { HoverImageEffect } from '@/components/HoverImageEffect/HoverImageEffect';
+import { HoverImageBlockyEffect } from '@/components/HoverImageEffects/HoverImageBlockyEffect';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -163,16 +163,16 @@ const CheckoutMore = () => {
               >
                 <Image
                   className='max-h-700px  w-auto invisible'
-                  src={menImg}
-                  alt='men'
+                  src={womenImg}
+                  alt='women'
                 ></Image>
 
-                <HoverImageEffect
+                <HoverImageBlockyEffect
                   className='w-full h-full top-0 !absolute'
                   img={menImg}
                   aspectRatio={[1, 1.5]}
                   parentId='menFashionImgLink'
-                ></HoverImageEffect>
+                ></HoverImageBlockyEffect>
               </a>
             </div>
 
@@ -193,12 +193,12 @@ const CheckoutMore = () => {
                   alt='women'
                 ></Image>
 
-                <HoverImageEffect
+                <HoverImageBlockyEffect
                   className='w-full h-full top-0 !absolute'
                   img={womenImg}
                   aspectRatio={[1, 1.5]}
                   parentId='womenFashionImgLink'
-                ></HoverImageEffect>
+                ></HoverImageBlockyEffect>
               </a>
             </div>
           </div>

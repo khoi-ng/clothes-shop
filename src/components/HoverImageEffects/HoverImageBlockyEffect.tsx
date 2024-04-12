@@ -167,7 +167,7 @@ function ImageWithEffect({
   );
 }
 
-export const HoverImageEffect = ({
+export const HoverImageBlockyEffect = ({
   className,
   img,
   aspectRatio,

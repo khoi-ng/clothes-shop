@@ -6,6 +6,8 @@ import './Header.scss';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { HoverImageWavyEffect } from '@/components/HoverImageEffects/HoverImageWavyEffect';
+import Image, { StaticImageData } from 'next/image';
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = () => {
@@ -40,7 +42,7 @@ const Header = () => {
         stagger: 0.01,
       })
       .to(
-        ['#mainHeaderImg', '#headerImg3'],
+        ['.mainHeaderImg', '#headerImg3'],
         {
           opacity: 1,
           y: 0,
@@ -76,7 +78,7 @@ const Header = () => {
 
     timelineScroll
       .to(
-        '#mainHeaderImg',
+        '.mainHeaderImg',
         {
           ease: 'none',
           yPercent: 40,
@@ -136,12 +138,23 @@ const Header = () => {
             plugins={[responsive()]}
           />
 
-          <AdvancedImage
-            id='mainHeaderImg'
-            className='headerIMG h-screen w-auto absolute right-0 top-0  opacity-0'
-            cldImg={mainHeaderImg}
-            plugins={[responsive()]}
-          />
+          <div className='h-screen w-auto  right-0 top-0 absolute'>
+            <div className='mainHeaderImg-wrapper h-screen w-auto  right-0 top-0 relative'>
+              <AdvancedImage
+                id='mainHeaderImg'
+                className='mainHeaderImg headerIMG h-screen w-auto  right-0 top-0 '
+                cldImg={mainHeaderImg}
+                plugins={[responsive()]}
+              />
+              {/* <HoverImageWavyEffect
+                className='mainHeaderImg w-full h-full top-0 !absolute hover:saturate-0'
+                imgID={'mainHeaderImg'}
+                parentId='mainHeaderImg-wrapper'
+                aspectRatio={[1, 1.50016818029]}
+              /> */}
+            </div>
+          </div>
+
           <div className='header-title absolute -rotate-[95deg] -left-20 bottom-1/3 text-white z-10 font-oswald font-normal'>
             <h1 className='header-title-rotated'>
               <span className='opacity-0'>L</span>

@@ -2,10 +2,13 @@
 import { FaShoppingCart } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
 
-const Navbar = ({ fontColor = 'text-white' }) => {
+const Navbar = ({
+  fontColor = 'text-white',
+  backgroundColor = 'bg-transparent',
+}) => {
   return (
     <nav
-      className={`absolute flex ${fontColor} w-full bg-transparent z-4 justify-between z-30 items-center h-24 px-24 0`}
+      className={`absolute flex ${fontColor} w-full ${backgroundColor} z-4 justify-between z-30 items-center h-24 px-24 0`}
     >
       <a href='/' className='text-5xl flex gap-x-4 font-rocknroll'>
         Clothes

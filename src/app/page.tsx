@@ -4,7 +4,7 @@ import Featured from '@/components/LandingPage/Featured';
 import prisma from '@/db/prisma';
 import CheckoutMore from '@/components/LandingPage/CheckoutMore/CheckoutMore';
 import Navbar from '@/components/Navbar';
-import GridImageCanvas from '@/components/GridImageCanvas/GridImageCanvas';
+import GridImageCanvas from '@/components/HoverImageEffects/GridImageCanvas';
 
 const getFeaturedProducts = async () => {
   const featuredProducts = await prisma.featuredCollection.findFirst({
@@ -31,7 +31,7 @@ export default async function Home() {
   return (
     // Landing page
     <main className=''>
-      <Navbar />
+      <Navbar backgroundColor='bg-transparent' />
       <Header />
       <Featured featuredProducts={JSON.stringify(featuredProducts?.products)} />
       <CheckoutMore />
