@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
+import {
+  Navigation,
+  Pagination,
+  EffectCoverflow,
+  Autoplay,
+} from 'swiper/modules';
 import './SwiperSlideCarousel.scss';
 
 // Import Swiper styles
@@ -43,6 +48,7 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
       return (
         <SwiperSlide key={`carousel-${i}`} id={`carousel-slider-${i}`}>
           <AdvancedImage
+            className='hover:scale-105 pt-5'
             cldImg={newItemImg}
             plugins={[responsive()]}
             alt='slide_image'
@@ -95,6 +101,12 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
           depth: 100,
           modifier: 2.5,
         }}
+        speed={120}
+        autoplay={{
+          delay: 7000,
+          disableOnInteraction: true,
+          reverseDirection: false,
+        }}
         onActiveIndexChange={(swiper) => {
           showCurrentSwiperInfo(swiper);
         }}
@@ -103,7 +115,7 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         }}
-        modules={[EffectCoverflow, Pagination, Navigation]}
+        modules={[Autoplay, EffectCoverflow, Pagination, Navigation]}
         className='swiper_container'
         breakpoints={{
           // when window width is >= 640px
@@ -124,10 +136,10 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
         {!isLoading && swiperSlides?.map((slide) => slide)}
 
         <div className='slider-controler'>
-          <div className='swiper-button-prev slider-arrow'>
+          <div className='swiper-button-prev slider-arrow hover:scale-110'>
             <MdKeyboardArrowLeft />
           </div>
-          <div className='swiper-button-next slider-arrow'>
+          <div className='swiper-button-next slider-arrow hover:scale-110'>
             <MdKeyboardArrowRight />
           </div>
           {/* <div className='swiper-pagination'></div> */}

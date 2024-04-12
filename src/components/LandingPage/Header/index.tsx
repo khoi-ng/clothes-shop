@@ -1,14 +1,11 @@
 'use client';
 import { AdvancedImage, responsive } from '@cloudinary/react';
 import { thumbnail } from '@cloudinary/url-gen/actions/resize';
-import gsap from 'gsap';
 import cloudinary from '@/db/cloudinary';
 import './Header.scss';
-import { useRef } from 'react';
+import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { opacity } from '@cloudinary/url-gen/actions/adjust';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = () => {
@@ -82,7 +79,7 @@ const Header = () => {
         '#mainHeaderImg',
         {
           ease: 'none',
-          yPercent: -4,
+          yPercent: 40,
         },
         0
       )
@@ -90,7 +87,7 @@ const Header = () => {
         '#headerImg3',
         {
           ease: 'none',
-          yPercent: gsap.utils.random(-20, -10),
+          yPercent: 40,
         },
         0
       )

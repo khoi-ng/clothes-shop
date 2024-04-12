@@ -7,7 +7,7 @@ const Navbar = ({ fontColor = 'text-white' }) => {
     <nav
       className={`absolute flex ${fontColor} w-full bg-transparent z-4 justify-between z-30 items-center h-24 px-24 0`}
     >
-      <a href='' className='text-5xl flex gap-x-4 font-rocknroll'>
+      <a href='/' className='text-5xl flex gap-x-4 font-rocknroll'>
         Clothes
       </a>
 
