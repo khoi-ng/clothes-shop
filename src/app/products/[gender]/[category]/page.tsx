@@ -1,7 +1,8 @@
 import NotFound from '@/app/not-found';
+import ParallaxSlider from '@/components/ParallaxSlider/ParallaxSlider';
 import ProductCard from '@/components/ProductCard';
 import prisma from '@/db/prisma';
-import { Category, GENDER } from '@/interfaces';
+import { Category, Gender, GENDER } from '@/interfaces';
 
 const getCategoryByGender = async (gender: GENDER, uri: string) => {
   const genderFromDB = await prisma.category.findFirst({
@@ -17,6 +18,26 @@ const getCategoryByGender = async (gender: GENDER, uri: string) => {
           imageUrl: true,
           description: true,
           price: true,
+        },
+      },
+    },
+  });
+  return genderFromDB;
+};
+
+const getGenderCategories = async (gender: GENDER) => {
+  const genderFromDB = await prisma.gender.findFirst({
+    where: {
+      name: gender,
+    },
+    include: {
+      categories: {
+        select: {
+          id: true,
+          name: true,
+          genderName: true,
+          uriName: true,
+          bentoUrls: true,
         },
       },
     },
@@ -42,11 +63,17 @@ export default async function CategoryPage({
       return;
     }
 
+    const categories = await getGenderCategories(gender);
+
+    const genderObjectString = JSON.stringify(categories);
+
     return (
       <section className=' text-black mx-10'>
-        <h2 className='text-4xl pb-4'>
-          {gender}&apos;s {categoriesObject.name}
-        </h2>
+        <div className='flex items-center'>
+          <h2 className='text-4xl pb-4'>
+            {gender}&apos;s {categoriesObject.name}
+          </h2>
+        </div>
         <article className='flex flex-wrap gap-4'>
           {categoriesObject?.products?.map((product, index) => (
             <ProductCard
@@ -55,6 +82,15 @@ export default async function CategoryPage({
               key={`${genderLowerCase}-category-item-${index}-${product.name}-div`}
             />
           ))}
+        </article>
+        <article className='w-11/12  my-20'>
+          <div className='flex items-center'>
+            <h2 className='text-4xl pb-4'>Check out more Categories:</h2>
+          </div>
+          <ParallaxSlider
+            genderObjectString={genderObjectString}
+            currentCategoryID={categoriesObject.id}
+          />
         </article>
       </section>
     );

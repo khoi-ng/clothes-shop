@@ -26,7 +26,7 @@ const Navbar = ({
             <a href='/products/WOMEN'>Women</a>
           </li>
           <li>
-            <a href='#'>News</a>
+            <a href='#'>Github</a>
           </li>
           <li>
             <a href='#'>Contact</a>

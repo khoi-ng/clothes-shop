@@ -34,6 +34,10 @@ const config: Config = {
         womenContainer: '#F4EBD5',
         checkout: '#222023',
       },
+      scale: {
+        '175': '1.75',
+        '200': '2',
+      },
 
       height: {
         '100px': '100px',

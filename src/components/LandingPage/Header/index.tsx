@@ -142,7 +142,7 @@ const Header = () => {
             <div className='mainHeaderImg-wrapper h-screen w-auto  right-0 top-0 relative'>
               <AdvancedImage
                 id='mainHeaderImg'
-                className='mainHeaderImg headerIMG h-screen w-auto  right-0 top-0 '
+                className='mainHeaderImg headerIMG h-screen w-auto  right-0 top-0 opacity-0 '
                 cldImg={mainHeaderImg}
                 plugins={[responsive()]}
               />

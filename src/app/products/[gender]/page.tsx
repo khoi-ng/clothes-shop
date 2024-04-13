@@ -36,7 +36,7 @@ export default async function GenderFashionPage({
     const genderObject: Gender | null = await JSON.parse(
       JSON.stringify(categories)
     );
-    console.log(genderObject?.bannerUrls);
+    // console.log(genderObject?.bannerUrls);
 
     return (
       <section className=' text-black mx-10'>
