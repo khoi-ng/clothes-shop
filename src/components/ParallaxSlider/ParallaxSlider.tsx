@@ -6,14 +6,14 @@ import './ParallaxSlider.scss';
 import React, { useEffect, useRef, useState } from 'react';
 import { ICategory, Gender } from '@/interfaces';
 import cloudinary from '@/db/cloudinary';
-import { thumbnail } from '@cloudinary/url-gen/actions/resize';
-import { AdvancedImage, responsive } from '@cloudinary/react';
+import { Resize, thumbnail } from '@cloudinary/url-gen/actions/resize';
+import { AdvancedImage, lazyload, responsive } from '@cloudinary/react';
 
 const ParallaxSlider = ({
-  height = 'h-[500px]',
-  width = 'w-[300px]',
-  imgHeight = 'h-[600px]',
-  imgWidth = 'w-[500px]',
+  height = 'h-[300px]',
+  width = 'w-[240px]',
+  imgHeight = 'h-[400px]',
+  imgWidth = 'w-[400px]',
   genderObjectString,
   currentCategoryID,
 }: {
@@ -32,13 +32,23 @@ const ParallaxSlider = ({
   const boundingRect = useRef<DOMRect | undefined>();
   const mouseSpeed = 0.02;
 
+  // const length = genderObject?.categories?.length;
+
+  const wholeWidthRef = useRef<number>(0);
+  // 240 * (length ? length - 1 : 0) - 10 + 10 * (length ? length - 1 : 0);
+
   useEffect(() => {
     boundingRect.current = document
       .getElementById(parraxSliderID)
       ?.getBoundingClientRect();
+
+    const rectWhole = document
+      .getElementsByClassName('image-track')[0]
+      ?.getBoundingClientRect();
+    if (rectWhole) wholeWidthRef.current = rectWhole.width;
   });
 
-  function handleMouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function handleMouseDown(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     const rect = boundingRect.current;
     if (rect) {
       const x = e.clientX - rect.left;
@@ -47,12 +57,12 @@ const ParallaxSlider = ({
     }
   }
 
-  function handleMouseUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function handleMouseUp(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     // console.log(e.clientX);
     initialMouseXData.current = 0;
   }
 
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function handleMouseMove(e: React.MouseEvent<HTMLElement, MouseEvent>) {
     if (initialMouseXData.current === 0) return;
 
     const rect = boundingRect.current;
@@ -63,23 +73,29 @@ const ParallaxSlider = ({
       // this start from 0 and as the mouse moves it gets negative or positive
       const mouseDelta = (x - initialMouseXData.current) * mouseSpeed;
       const maxDelta = containerWidth / 2;
+      console.log('container', containerWidth);
+      console.log('wholeWidth', wholeWidthRef.current);
 
       // mouseDelta converted in percentage to relative size of container, container is 100%
       const percentage = (mouseDelta / maxDelta) * 100;
       const nextPercentage = Math.max(
         Math.min(currentPercentage.current + percentage, 0),
-        -95
+        // -100
+        -100 + (containerWidth / wholeWidthRef.current) * 100
       );
 
       currentPercentage.current = nextPercentage;
+
       for (const image of document.getElementsByClassName(
         'parallaxIMG-categorie'
       )) {
         image.animate(
           {
-            objectPosition: `${100 + nextPercentage}% center`,
+            objectPosition: `${
+              100 + nextPercentage + (mouseDelta * 20) / containerWidth
+            }% center`,
           },
-          { duration: 800, fill: 'forwards' }
+          { duration: 50, fill: 'forwards' }
         );
       }
 
@@ -88,7 +104,7 @@ const ParallaxSlider = ({
   }
 
   return (
-    <div
+    <article
       className={`parallax-slider m-3 ${height} `}
       id={parraxSliderID}
       onMouseDown={(e) => handleMouseDown(e)}
@@ -104,26 +120,26 @@ const ParallaxSlider = ({
     >
       <div
         className='image-track'
+        // id='image-track'
         style={{
           transform: `translateX(${percentageState}%)`,
         }}
       >
-        {genderObject?.categories?.map((category, index) =>
-          category.id !== currentCategoryID ? (
-            <ParallaxItem
-              key={`${category.id}-paralax-item-${index}`}
-              category={category}
-              width={width}
-              height={height}
-              imgHeight={imgHeight}
-              imgWidth={imgWidth}
-            />
-          ) : (
-            <></>
-          )
+        {genderObject?.categories?.map(
+          (category, index) =>
+            category.id !== currentCategoryID && (
+              <ParallaxItem
+                key={`${category.id}-paralax-item-${index}-ITEM`}
+                category={category}
+                width={width}
+                height={height}
+                imgHeight={imgHeight}
+                imgWidth={imgWidth}
+              />
+            )
         )}
       </div>
-    </div>
+    </article>
   );
 };
 
@@ -142,14 +158,15 @@ const ParallaxItem = ({
 }) => {
   const myCld = cloudinary;
   const bentoImg = myCld.image(category.bentoUrls[1]);
-  bentoImg.resize(thumbnail().width(600)).format('auto');
+  bentoImg.resize(Resize.crop(700)).format('auto');
+  // bentoImg.resize(thumbnail().width(600)).format('auto');
 
   return (
-    <a className={`item ${width} ${height}`}>
+    <a className={`item ${width} ${height}`} key={`${category.id}-sliderimg`}>
       <AdvancedImage
         className={`image parallaxIMG-categorie ${imgHeight} ${imgWidth} hover:scale-105 transition-all`}
         cldImg={bentoImg}
-        plugins={[responsive()]}
+        plugins={[responsive(), lazyload()]}
       />
 
       <div className='absolute flext text-center text-3xl bottom-10  text-white w-[200px]'>
