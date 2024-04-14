@@ -49,9 +49,9 @@ export default async function CategoryPage({
             />
           ))}
         </article>
-        <article className='w-11/12  my-20'>
+        <article className='w-full  my-20'>
           <div className='flex items-center'>
-            <h2 className='text-4xl pb-4'>Check out more Categories:</h2>
+            <h2 className='text-4xl pb-4'>Check out more Categories</h2>
           </div>
           <ParallaxSlider
             genderObjectString={genderObjectString}

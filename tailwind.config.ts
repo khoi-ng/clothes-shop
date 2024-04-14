@@ -11,6 +11,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        menuShadow: '-2px 0px 12px hsla(255,255,255,255.2)',
+      },
+      transition: {
+        rightnav: 'right 0.4s',
+      },
       animation: {
         fadein: 'fadein .5s ease-in-out',
       },

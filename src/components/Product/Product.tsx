@@ -100,7 +100,7 @@ const Product = ({
                       : 'No Description yet'}
                   </p>
                   <div className='text-right mt-4'>
-                    <span className='font-semibold'>{otherProduct.price}</span>
+                    <span className='font-semibold'>{otherProduct.price}€</span>
                   </div>
                 </div>
               </article>
