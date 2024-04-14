@@ -28,7 +28,7 @@ const Product = ({
       <div className='flex flex-col md:flex-row sm sm:gap-8'>
         <div
           className='flex item-center justify-center 
-      max-w-[450px] max-h-[450px] w-[450px] h-[450px] rounded-xl shadow-2xl shadow-gray-200 bg-white'
+      max-w-[450px] max-h-[450px] sm:w-[450px] sm:h-[450px] rounded-xl shadow-2xl shadow-gray-200 bg-white'
         >
           <AdvancedImage
             className='max-h-[450px] max-w-[450px] p-9 m-auto'
@@ -39,7 +39,7 @@ const Product = ({
         </div>
         <div className='py-4 flex justify-between flex-col'>
           <div>
-            <h2 className='text-3xl sm:text-5xl font-bold animate-fadein'>
+            <h2 className='text-2xl sm:text-4xl font-bold animate-fadein'>
               {product.name}
             </h2>
             <p className='max-w-xl py-4 text-lg'>

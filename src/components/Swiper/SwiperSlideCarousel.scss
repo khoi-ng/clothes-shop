@@ -42,7 +42,7 @@
     }
     height: 110px;
     width: 110px;
-    left: calc(50% - 14rem) !important;
+    // left: calc(50% - 14rem);
   }
   .swiper-button-next {
     &:after {
@@ -52,7 +52,7 @@
     }
     height: 110px;
     width: 110px;
-    right: calc(50% - 14rem) !important;
+    // right: calc(50% - 14rem);
   }
   .swiper-wrapper {
     align-items: end !important;

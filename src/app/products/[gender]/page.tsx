@@ -39,9 +39,11 @@ export default async function GenderFashionPage({
     // console.log(genderObject?.bannerUrls);
 
     return (
-      <section className=' text-black mx-10'>
+      <section className=' text-black max-md:mx-0 mx-10'>
         <Banner />
-        <h2 className='text-4xl pb-4'>{genderName}&apos;s Fashion</h2>
+        <h2 className='text-3xl sm:text-4xl pb-4 font-semibold capitalize'>
+          {params.gender}&apos;s Fashion
+        </h2>
         <article className='flex flex-wrap gap-4'>
           {genderObject?.categories?.map((category, index) => (
             <BentoCategoryCard

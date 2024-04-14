@@ -24,7 +24,7 @@ const Navbar = ({
 
   return (
     <nav
-      className={`absolute flex ${fontColor} w-full ${backgroundColor} z-4 justify-between z-30 items-center h-24 xl:px-24 px-12 0`}
+      className={`absolute flex ${fontColor} w-full ${backgroundColor} z-4 justify-between z-30 items-center h-24 xl:px-24 sm:px-12 px-4`}
     >
       <a href='/' className='text-5xl flex gap-x-4 font-rocknroll'>
         Clothes

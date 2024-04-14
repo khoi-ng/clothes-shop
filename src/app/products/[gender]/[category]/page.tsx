@@ -34,10 +34,10 @@ export default async function CategoryPage({
     const genderObjectString = JSON.stringify(categories);
 
     return (
-      <section className=' text-black mx-10 pb-20 w-full'>
+      <section className=' text-black mx-5 md:mx-10 pb-20 w-full'>
         <div className='flex items-center'>
-          <h2 className='text-4xl pb-4'>
-            {gender}&apos;s {categoriesObject.name}
+          <h2 className='text-2xl sm:text-3xl pb-4 font-semibold capitalize'>
+            {genderLowerCase.toLocaleLowerCase()}&apos;s {categoriesObject.name}
           </h2>
         </div>
         <article className='flex flex-wrap gap-4'>
@@ -51,7 +51,9 @@ export default async function CategoryPage({
         </article>
         <article className='w-full  my-20'>
           <div className='flex items-center'>
-            <h2 className='text-4xl pb-4'>Check out more Categories</h2>
+            <h2 className='text-2xl sm:text-3xl pb-4 font-semibold capitalize'>
+              Check out more Categories
+            </h2>
           </div>
           <ParallaxSlider
             genderObjectString={genderObjectString}

@@ -2,7 +2,6 @@
 import { AdvancedImage, responsive } from '@cloudinary/react';
 import { thumbnail } from '@cloudinary/url-gen/actions/resize';
 import cloudinary from '@/db/cloudinary';
-import './Header.scss';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -13,8 +12,9 @@ gsap.registerPlugin(ScrollTrigger);
 const Header = () => {
   const myCld = cloudinary;
 
-  const mainHeaderImg = myCld.image('Demo-Shop/mainHeaderDarkend');
-  mainHeaderImg.resize(thumbnail().width(900)).format('auto');
+  const mainHeaderImg = myCld
+    .image('Demo-Shop/mainHeaderDarkend')
+    .format('auto');
 
   const headerImg2 = myCld.image('Demo-Shop/header2');
   headerImg2.resize(thumbnail().width(900)).format('auto');
@@ -126,23 +126,23 @@ const Header = () => {
         <div className='flex items-end'>
           <AdvancedImage
             id='headerImg2'
-            className='headerIMG h-2/5 w-auto absolute right-1/4 bottom-0 opacity-0 '
+            className='headerIMG h-2/5 w-auto absolute right-1/4 bottom-0 opacity-0 hidden md:block'
             cldImg={headerImg2}
             plugins={[responsive()]}
           />
 
           <AdvancedImage
             id='headerImg3'
-            className='headerIMG h-3/5 w-auto absolute right-2/4 bottom-0  opacity-0 '
+            className='headerIMG h-3/5 w-auto absolute right-2/4 bottom-0  opacity-0 hidden md:block'
             cldImg={headerImg3}
             plugins={[responsive()]}
           />
 
           <div className='h-screen w-auto  right-0 top-0 absolute'>
-            <div className='mainHeaderImg-wrapper h-screen w-auto  right-0 top-0 relative'>
+            <div className='mainHeaderImg-wrapper h-screen w-screen  right-0 top-0 relative  md:h-screen md:w-auto  '>
               <AdvancedImage
                 id='mainHeaderImg'
-                className='mainHeaderImg headerIMG h-screen w-auto  right-0 top-0 opacity-0 '
+                className='mainHeaderImg headerIMG h-screen w-screen right-0 top-0  object-cover opacity-0 md:h-screen md:w-auto  '
                 cldImg={mainHeaderImg}
                 plugins={[responsive()]}
               />
@@ -155,8 +155,11 @@ const Header = () => {
             </div>
           </div>
 
-          <div className='header-title absolute -rotate-[95deg] -left-20 bottom-1/3 text-white z-10 font-oswald font-normal'>
-            <h1 className='header-title-rotated'>
+          <div
+            className=' text-6xl absolute -rotate-[0deg] left-6 top-1/3 text-white z-10 font-oswald font-normal 
+          sm:-rotate-[95deg] sm:-left-20 sm:bottom-1/3 sm:text-[10.45vh]'
+          >
+            <h1 className='header-title-rotated '>
               <span className='opacity-0'>L</span>
               <span className='text-headeryellow font-oswald font-normal opacity-0'>
                 OO

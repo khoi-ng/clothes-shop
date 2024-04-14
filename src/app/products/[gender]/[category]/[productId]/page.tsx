@@ -26,8 +26,10 @@ export default async function Category({
     }
 
     return (
-      <section className=' text-black mx-10 pb-20 w-full'>
-        <h2 className='text-4xl pb-4'>Product {product.name}</h2>
+      <section className=' text-black sm:mx-5 md:mx-10 pb-20 w-full'>
+        <h2 className='text-2xl sm:text-3xl pb-4 font-semibold capitalize'>
+          Product {product.name}
+        </h2>
         <Product product={productObj} category={categoryObject} />
       </section>
     );

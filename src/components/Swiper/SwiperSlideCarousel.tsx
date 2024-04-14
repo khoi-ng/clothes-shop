@@ -136,10 +136,10 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
         {!isLoading && swiperSlides?.map((slide) => slide)}
 
         <div className='slider-controler'>
-          <div className='swiper-button-prev slider-arrow hover:scale-110'>
+          <div className='swiper-button-prev slider-arrow hover:scale-110 sm:!left-[calc(50%-14rem)] !left-[calc(50%-12rem)]'>
             <MdKeyboardArrowLeft />
           </div>
-          <div className='swiper-button-next slider-arrow hover:scale-110'>
+          <div className='swiper-button-next slider-arrow hover:scale-110 sm:!right-[calc(50%-14rem)] !right-[calc(50%-12rem)]'>
             <MdKeyboardArrowRight />
           </div>
           {/* <div className='swiper-pagination'></div> */}

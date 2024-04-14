@@ -54,8 +54,8 @@ export default async function RootLayout({
           <body className='bg-slate-50'>
             {/* <Navbar /> */}
 
-            <section className='mx-24 pt-36'>
-              <div className=' flex '>
+            <section className='max-md:mx-6 mx-24 pt-36 '>
+              <div className=' flex max-md:flex-col '>
                 <CategorySideNav genderObject={genderObject} />
                 {children}
               </div>

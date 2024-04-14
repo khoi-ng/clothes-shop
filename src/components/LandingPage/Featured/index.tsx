@@ -104,8 +104,8 @@ const Featured = ({ featuredProducts }: { featuredProducts: string }) => {
           {/* bg-slate-600 */}
 
           <span
-            className='  bg-landing3  text-5xl font-oswald absolute -top-12 -rotate-6 py-6 z-0 
-            sm:text-6xl
+            className='  bg-landing3  text-5xl font-oswald absolute -top-14 -rotate-12 sm:-rotate-6 py-6 z-0 
+            sm:text-6xl sm:-top-12
             md:text-7xl md:p-8 md:py-9 md:-top-16 
             lg:text-8xl lg:p-9 lg:py-10  lg:-top-18
             xl:text-8xl xl:p-9 xl:pl-12  xl:-top-12
@@ -130,10 +130,10 @@ const Featured = ({ featuredProducts }: { featuredProducts: string }) => {
             id='newCollectionTitle'
             className='
             absolute
-            text-5xl font-oswald -top-12 p-5 py-6 z-0 
-            sm:text-6xl
-            md:text-7xl md:p-8 md:py-9 md:-top-14  md:left-12
-            lg:text-8xl lg:p-9 lg:py-10  lg:-top-18 lg:left-12
+            text-5xl font-oswald -top-14 p-5 py-6 z-0 -rotate-12
+            sm:text-6xl sm:-rotate-6 sm:-top-12
+            md:text-7xl md:-rotate-2 md:p-8 md:py-9 md:-top-14  md:left-12
+            lg:text-8xl lg:-rotate-0 lg:p-9 lg:py-10  lg:-top-18 lg:left-12
             xl:text-8xl xl:p-9 xl:pl-12  xl:-top-12 xl:left-16 
             '
           >
