@@ -91,10 +91,16 @@ const Product = ({
                 </div>
 
                 <div className='flex flex-col p-6  mt-auto rounded-lg    '>
-                  <h3 className='font-semibold truncate'>article title</h3>
-                  <p className='text-gray-600 text-sm truncate'>descrip</p>
+                  <h3 className='font-semibold truncate'>
+                    {otherProduct.name}
+                  </h3>
+                  <p className='text-gray-600 text-sm truncate'>
+                    {otherProduct.description
+                      ? otherProduct.description
+                      : 'No Description yet'}
+                  </p>
                   <div className='text-right mt-4'>
-                    <span className='font-semibold'>price</span>
+                    <span className='font-semibold'>{otherProduct.price}</span>
                   </div>
                 </div>
               </article>
