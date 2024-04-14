@@ -148,7 +148,7 @@ const GridImageCanvas = ({
     effect.canvas.addEventListener('mousemove', (e) => {
       effect.mouse.x = e.offsetX;
       effect.mouse.y = e.offsetY;
-      console.log(effect.mouse.y);
+      // console.log(effect.mouse.y);
     });
     function animate() {
       if (ctx) {

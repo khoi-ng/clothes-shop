@@ -157,12 +157,12 @@ const CheckoutMore = () => {
                 </h2>
               </div>
               <a
-                className='max-h-700px  w-auto relative saturate-0 hover:saturate-100 transition ease-in-out duration-500'
+                className='max-h-[700px]  w-auto relative saturate-0 hover:saturate-100 transition ease-in-out duration-500'
                 href='/products/men'
                 id='menFashionImgLink'
               >
                 <Image
-                  className='max-h-700px  w-auto invisible'
+                  className='max-h-[700px]  w-auto invisible'
                   src={womenImg}
                   alt='women'
                 ></Image>
@@ -183,12 +183,12 @@ const CheckoutMore = () => {
                 </h2>
               </div>
               <a
-                className='max-h-700px  w-auto relative saturate-0 hover:saturate-100 transition ease-in-out duration-500'
+                className='max-h-[700px]  w-auto relative saturate-0 hover:saturate-100 transition ease-in-out duration-500'
                 href='/products/women'
                 id='womenFashionImgLink'
               >
                 <Image
-                  className='max-h-700px  w-auto invisible'
+                  className='max-h-[700px]  w-auto invisible'
                   src={womenImg}
                   alt='women'
                 ></Image>

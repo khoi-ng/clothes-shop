@@ -3,25 +3,9 @@ import prisma from '@/db/prisma';
 import cloudinary from '@/db/cloudinary';
 import { thumbnail } from '@cloudinary/url-gen/actions/resize';
 import { AdvancedImage, responsive } from '@cloudinary/react';
-import ProductComponent from '../../../../../components/ProductComponent/ProductComponent';
-import { Products } from '@/interfaces';
-
-const getProduct = async (id: string) => {
-  const product = await prisma.product.findFirst({
-    where: {
-      id: id,
-    },
-    select: {
-      id: true,
-      name: true,
-      imageUrl: true,
-      description: true,
-      price: true,
-      createdAt: true,
-    },
-  });
-  return product;
-};
+import Product from '../../../../../components/Product/Product';
+import { ICategory, Products } from '@/interfaces';
+import { getCategoryByID, getProduct } from '@/db/prismaOperation';
 
 export default async function Category({
   params,
@@ -29,13 +13,22 @@ export default async function Category({
   params: { gender: string; category: string; productId: string };
 }) {
   const product = await getProduct(params.productId);
-  if (product) {
+
+  if (product && product.categoryId) {
     const productObj: Products = JSON.parse(JSON.stringify(product));
+    const category = await getCategoryByID(product?.categoryId);
+    const categoryObject: ICategory | null = await JSON.parse(
+      JSON.stringify(category)
+    );
+
+    if (!categoryObject) {
+      notFound();
+    }
 
     return (
-      <section className=' text-black mx-10'>
+      <section className=' text-black mx-10 pb-20 w-full'>
         <h2 className='text-4xl pb-4'>Product {product.name}</h2>
-        <ProductComponent product={productObj} />
+        <Product product={productObj} category={categoryObject} />
       </section>
     );
   }

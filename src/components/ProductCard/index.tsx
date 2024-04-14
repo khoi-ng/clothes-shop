@@ -16,8 +16,8 @@ const ProductCard = ({ product, url }: { product: Products; url: string }) => {
     <Link
       href={url}
       className='bg-white 
-        w-300px 
-        h-380px 
+        w-[300px] 
+        h-[380px] 
         
         rounded 
         p-5
@@ -29,7 +29,7 @@ const ProductCard = ({ product, url }: { product: Products; url: string }) => {
         hover:shadow-xl hover:shadow-gray-100 transition-all
         '
     >
-      <div className='  h-250px  w-full flex items-center justify-center mb-3'>
+      <div className='  h-[250px]  w-full flex items-center justify-center mb-3'>
         <AdvancedImage
           className='object-contain h-full hover:scale-105 transition-all'
           cldImg={productIMG}
@@ -38,7 +38,7 @@ const ProductCard = ({ product, url }: { product: Products; url: string }) => {
       </div>
       <div>
         <h3 className='font-semibold truncate'>{product.name}</h3>
-        <p className='text-gray-600 text-sm truncate'>
+        <p className='text-gray-600 text-sm truncate '>
           {product.description ? product.description : 'No Description yet'}
         </p>
         <div className='text-right pt-4'>

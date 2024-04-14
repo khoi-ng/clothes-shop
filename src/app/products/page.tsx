@@ -9,7 +9,7 @@ export default function Products() {
       <article className=' pt-36'>
         {/* <ParallaxSlider /> */}
 
-        {/* <div className='max-h-700px h-auto relative' id='hoverIMGdiv'>
+        {/* <div className='max-h-[700px] h-auto relative' id='hoverIMGdiv'>
           <Image src={img} alt='test' className='invisible' />
           <HoverImageBlockyEffect
             className='w-full h-full border  top-0 !absolute'

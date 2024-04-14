@@ -9,7 +9,7 @@ export interface FeaturedProduct {
 
 export type GENDER = 'MEN' | 'WOMEN';
 
-export interface Category {
+export interface ICategory {
   id: string;
   name: string;
   genderName: GENDER;
@@ -22,7 +22,7 @@ export interface Gender {
   id: string;
   name: string;
   updatedAt: string;
-  categories: Category[] | null;
+  categories: ICategory[] | null;
   bannerUrls: string[];
 }
 
@@ -33,4 +33,5 @@ export interface Products {
   description: string | null;
   price: number;
   createdAt: string;
+  categoryId: string;
 }

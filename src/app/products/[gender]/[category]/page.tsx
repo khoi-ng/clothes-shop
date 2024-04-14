@@ -2,48 +2,11 @@ import NotFound from '@/app/not-found';
 import ParallaxSlider from '@/components/ParallaxSlider/ParallaxSlider';
 import ProductCard from '@/components/ProductCard';
 import prisma from '@/db/prisma';
-import { Category, Gender, GENDER } from '@/interfaces';
-
-const getCategoryByGender = async (gender: GENDER, uri: string) => {
-  const genderFromDB = await prisma.category.findFirst({
-    where: {
-      uriName: uri,
-      genderName: gender,
-    },
-    include: {
-      products: {
-        select: {
-          id: true,
-          name: true,
-          imageUrl: true,
-          description: true,
-          price: true,
-        },
-      },
-    },
-  });
-  return genderFromDB;
-};
-
-const getGenderCategories = async (gender: GENDER) => {
-  const genderFromDB = await prisma.gender.findFirst({
-    where: {
-      name: gender,
-    },
-    include: {
-      categories: {
-        select: {
-          id: true,
-          name: true,
-          genderName: true,
-          uriName: true,
-          bentoUrls: true,
-        },
-      },
-    },
-  });
-  return genderFromDB;
-};
+import {
+  getCategoryByUriNameAndGender,
+  getGenderCategories,
+} from '@/db/prismaOperation';
+import { ICategory, Gender, GENDER } from '@/interfaces';
 
 export default async function CategoryPage({
   params,
@@ -53,8 +16,11 @@ export default async function CategoryPage({
   const genderLowerCase = params.gender;
   const gender = genderLowerCase.toLocaleUpperCase();
   if (gender === 'MEN' || gender === 'WOMEN') {
-    const category = await getCategoryByGender(gender, params.category);
-    const categoriesObject: Category | null = await JSON.parse(
+    const category = await getCategoryByUriNameAndGender(
+      gender,
+      params.category
+    );
+    const categoriesObject: ICategory | null = await JSON.parse(
       JSON.stringify(category)
     );
 
@@ -68,7 +34,7 @@ export default async function CategoryPage({
     const genderObjectString = JSON.stringify(categories);
 
     return (
-      <section className=' text-black mx-10'>
+      <section className=' text-black mx-10 pb-20 w-full'>
         <div className='flex items-center'>
           <h2 className='text-4xl pb-4'>
             {gender}&apos;s {categoriesObject.name}

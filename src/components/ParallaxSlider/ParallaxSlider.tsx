@@ -4,16 +4,16 @@
 
 import './ParallaxSlider.scss';
 import React, { useEffect, useRef, useState } from 'react';
-import { Category, Gender } from '@/interfaces';
+import { ICategory, Gender } from '@/interfaces';
 import cloudinary from '@/db/cloudinary';
 import { thumbnail } from '@cloudinary/url-gen/actions/resize';
 import { AdvancedImage, responsive } from '@cloudinary/react';
 
 const ParallaxSlider = ({
-  height = 'h-500px',
-  width = 'w-300px',
-  imgHeight = 'h-600px',
-  imgWidth = 'w-500px',
+  height = 'h-[500px]',
+  width = 'w-[300px]',
+  imgHeight = 'h-[600px]',
+  imgWidth = 'w-[500px]',
   genderObjectString,
   currentCategoryID,
 }: {
@@ -138,24 +138,24 @@ const ParallaxItem = ({
   height: string;
   imgHeight: string;
   imgWidth: string;
-  category: Category;
+  category: ICategory;
 }) => {
   const myCld = cloudinary;
   const bentoImg = myCld.image(category.bentoUrls[1]);
   bentoImg.resize(thumbnail().width(600)).format('auto');
 
   return (
-    <div className={`item ${width} ${height}`}>
+    <a className={`item ${width} ${height}`}>
       <AdvancedImage
-        className={`image parallaxIMG-categorie ${imgHeight} ${imgWidth}`}
+        className={`image parallaxIMG-categorie ${imgHeight} ${imgWidth} hover:scale-105 transition-all`}
         cldImg={bentoImg}
         plugins={[responsive()]}
       />
 
-      <div className='absolute flext text-center text-3xl bottom-10  text-white w-200px'>
+      <div className='absolute flext text-center text-3xl bottom-10  text-white w-[200px]'>
         {category.name}
       </div>
-    </div>
+    </a>
   );
 };
 

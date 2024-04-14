@@ -5,25 +5,7 @@ import prisma from '@/db/prisma';
 import CheckoutMore from '@/components/LandingPage/CheckoutMore/CheckoutMore';
 import Navbar from '@/components/Navbar';
 import GridImageCanvas from '@/components/HoverImageEffects/GridImageCanvas';
-
-const getFeaturedProducts = async () => {
-  const featuredProducts = await prisma.featuredCollection.findFirst({
-    where: {
-      name: 'FeaturedProducts',
-    },
-    include: {
-      products: {
-        select: {
-          imageUrl: true,
-          price: true,
-          name: true,
-          description: true,
-        },
-      },
-    },
-  });
-  return featuredProducts;
-};
+import { getFeaturedProducts } from '../../src/db/prismaOperation';
 
 export default async function Home() {
   const featuredProducts = await getFeaturedProducts();

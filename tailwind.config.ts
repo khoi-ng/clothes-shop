@@ -11,6 +11,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        fadein: 'fadein .5s ease-in-out',
+      },
+      keyframes: {
+        fadein: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(1rem)',
+          },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -37,67 +50,6 @@ const config: Config = {
       scale: {
         '175': '1.75',
         '200': '2',
-      },
-
-      height: {
-        '100px': '100px',
-        '250px': '250px',
-        '200px': '200px',
-        '300px': '300px',
-        '350px': '350px',
-        '360px': '360px',
-        '370px': '370px',
-        '380px': '380px',
-        '390px': '390px',
-        '400px': '400px',
-        '500px': '500px',
-        '600px': '600px',
-        '700px': '700px',
-        '800px': '800px',
-        '900px': '900px',
-        '1000px': '1000px',
-      },
-      width: {
-        '100px': '100px',
-        '250px': '250px',
-        '200px': '200px',
-        '300px': '300px',
-        '350px': '350px',
-        '400px': '400px',
-        '500px': '500px',
-        '600px': '600px',
-        '700px': '700px',
-        '800px': '800px',
-        '900px': '900px',
-        '1000px': '1000px',
-      },
-      maxHeight: {
-        '100px': '100px',
-        '200px': '200px',
-        '250px': '250px',
-        '300px': '300px',
-        '350px': '350px',
-        '400px': '400px',
-        '500px': '500px',
-        '600px': '600px',
-        '700px': '700px',
-        '800px': '800px',
-        '900px': '900px',
-        '1000px': '1000px',
-      },
-      maxWidth: {
-        '100px': '100px',
-        '200px': '200px',
-        '250px': '250px',
-        '300px': '300px',
-        '350px': '350px',
-        '400px': '400px',
-        '500px': '500px',
-        '600px': '600px',
-        '700px': '700px',
-        '800px': '800px',
-        '900px': '900px',
-        '1000px': '1000px',
       },
     },
   },

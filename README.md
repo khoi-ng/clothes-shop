@@ -17,3 +17,7 @@ Credit for Image Usage from:
 - Unsplash AtikhBana: [Header 3](https://unsplash.com/de/fotos/frau-im-blauen-bralette-mit-sonnenbrille-die-ihre-augen-aufsetzt-_KaMTEmJnxY)
 - Shop Images from [kindpng](https://www.kindpng.com/)
 - Three JS Shader from [Juxtopposed](https://codepen.io/Juxtopposed/pen/MWZWpVQ?editors=1111)
+
+Special Credit:
+
+- Stylings for Products/Product page taken & inspired by [codrops ❤️💙](https://github.com/codrops/astro-shop-view-transitions)

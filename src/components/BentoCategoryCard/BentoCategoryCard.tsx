@@ -1,7 +1,7 @@
 'use client';
 
 import cloudinary from '@/db/cloudinary';
-import { Category } from '@/interfaces';
+import { ICategory } from '@/interfaces';
 import { AdvancedImage, responsive } from '@cloudinary/react';
 import { pad, thumbnail } from '@cloudinary/url-gen/actions/resize';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ const BentoCategoryCard = ({
   category,
   url,
 }: {
-  category: Category;
+  category: ICategory;
   url: string;
 }) => {
   const myCld = cloudinary;
@@ -24,8 +24,8 @@ const BentoCategoryCard = ({
   return (
     <Link
       className='bg-white 
-    w-300px 
-    h-200px 
+    w-[300px] 
+    h-[200px] 
     border 
     rounded-lg
     flex 
