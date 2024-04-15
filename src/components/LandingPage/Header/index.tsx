@@ -34,13 +34,17 @@ const Header = () => {
 
     const timelineFirstLoad = gsap.timeline();
     timelineFirstLoad
-      .to('.header-title-rotated span', {
-        y: 0,
-        opacity: 1,
-        ease: 'expo.out',
-        duration: 2,
-        stagger: 0.01,
-      })
+      .to(
+        '.header-title-rotated span',
+        {
+          y: 0,
+          opacity: 1,
+          ease: 'expo.out',
+          duration: 2,
+          stagger: 0.01,
+        },
+        0
+      )
       .to(
         ['.mainHeaderImg', '#headerImg3'],
         {
@@ -50,7 +54,7 @@ const Header = () => {
           duration: 2,
           stagger: 0.04,
         },
-        0.5
+        0.2
       )
       .to(
         '#headerImg2',

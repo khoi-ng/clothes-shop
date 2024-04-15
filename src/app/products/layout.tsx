@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar';
+import Navbar, { NavbarComponent } from '@/components/Navbar';
 
 export const metadata = {
   title: 'Next.js',
@@ -13,7 +13,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Navbar fontColor='text-white' backgroundColor='bg-black'></Navbar>
+        <div>
+          <Navbar fontColor='text-white' backgroundColor='bg-black' />
+        </div>
+
         {children}
       </body>
     </html>
