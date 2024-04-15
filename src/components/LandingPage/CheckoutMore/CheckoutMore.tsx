@@ -2,8 +2,8 @@
 
 import React from 'react';
 import './CheckoutMore.scss';
-import menImg from '../../../app/assets/img/mahdi-bafande-XCU9ZV_ys5w-unsplash.png';
-import womenImg from '../../../app/assets/img/alireza-dolati-OVS3rqXq9gg-unsplash.png';
+import menImg from '../../../app/assets/img/mahdi-bafande-XCU9ZV_ys5w-unsplash.webp';
+import womenImg from '../../../app/assets/img/alireza-dolati-OVS3rqXq9gg-unsplash.webp';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';

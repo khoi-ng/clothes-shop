@@ -1,5 +1,5 @@
 import { HoverImageBlockyEffect } from '@/components/HoverImageEffects/HoverImageBlockyEffect';
-import img from '../assets/img/alireza-dolati-OVS3rqXq9gg-unsplash.png';
+import img from '../assets/img/alireza-dolati-OVS3rqXq9gg-unsplash.webp';
 import Image from 'next/image';
 import ParallaxSlider from '@/components/ParallaxSlider/ParallaxSlider';
 
