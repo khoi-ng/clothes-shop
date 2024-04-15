@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa';
+
 const Footer = () => {
   return (
     <footer className='h-20 bg-[#CBCBC5] flex items-center justify-between px-10 md:px-20'>

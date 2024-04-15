@@ -5,7 +5,7 @@ import CheckoutMore from '@/components/LandingPage/CheckoutMore/CheckoutMore';
 
 import { getFeaturedProducts } from '../../src/db/prismaOperation';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer/footer';
+import Footer from '@/components/Footer/Footer';
 
 export default async function Home() {
   const featuredProducts = await getFeaturedProducts();

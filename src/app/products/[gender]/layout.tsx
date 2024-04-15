@@ -1,9 +1,8 @@
-import prisma from '@/db/prisma';
-import { Gender, GENDER } from '@/interfaces';
+import { Gender } from '@/interfaces';
 import CategorySideNav from '@/components/CategorySideNav/CategorySideNav';
 import NotFound from '@/app/not-found';
 import { getGenderCategories } from '@/db/prismaOperation';
-import Footer from '@/components/Footer/footer';
+import Footer from '@/components/Footer/Footer';
 
 export const metadata = {
   title: 'Next.js',
