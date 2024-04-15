@@ -1,20 +1,21 @@
 'use client';
+import mainIMG from '../../../app/assets/img/MainHeader2.webp';
 import { AdvancedImage, responsive } from '@cloudinary/react';
 import { thumbnail } from '@cloudinary/url-gen/actions/resize';
 import cloudinary from '@/db/cloudinary';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { HoverImageWavyEffect } from '@/components/HoverImageEffects/HoverImageWavyEffect';
+// import { HoverImageWavyEffect } from '@/components/HoverImageEffects/HoverImageWavyEffect';
 import Image, { StaticImageData } from 'next/image';
 gsap.registerPlugin(ScrollTrigger);
 
 const Header = () => {
   const myCld = cloudinary;
 
-  const mainHeaderImg = myCld
-    .image('Demo-Shop/mainHeaderDarkend')
-    .format('auto');
+  // const mainHeaderImg = myCld
+  //   .image('Demo-Shop/mainHeaderDarkend')
+  //   .format('auto');
 
   const headerImg2 = myCld.image('Demo-Shop/header2');
   headerImg2.resize(thumbnail().width(900)).format('auto');
@@ -144,12 +145,19 @@ const Header = () => {
 
           <div className='h-screen w-auto  right-0 top-0 absolute'>
             <div className='mainHeaderImg-wrapper h-screen w-screen  right-0 top-0 relative  md:h-screen md:w-auto  '>
-              <AdvancedImage
+              {/* <AdvancedImage
                 id='mainHeaderImg'
                 className='mainHeaderImg headerIMG h-screen w-screen right-0 top-0  object-cover opacity-0 md:h-screen md:w-auto  '
                 cldImg={mainHeaderImg}
                 plugins={[responsive()]}
-              />
+              /> */}
+              <Image
+                id='mainHeaderImg'
+                className='mainHeaderImg headerIMG h-screen w-screen right-0 top-0  object-cover opacity-0 md:h-screen md:w-auto  '
+                src={mainIMG}
+                alt=''
+              ></Image>
+
               {/* <HoverImageWavyEffect
                 className='mainHeaderImg w-full h-full top-0 !absolute hover:saturate-0'
                 imgID={'mainHeaderImg'}
