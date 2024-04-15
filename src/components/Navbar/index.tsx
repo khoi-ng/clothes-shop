@@ -38,9 +38,10 @@ export default function Navbar({
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     // console.log('Page scroll: ', latest);
+    // need to be specific bcs dont want to trigger redraw all the time
     if (latest >= 40 && !isScrolling) {
       setIsScrolling(true);
-    } else if (latest === 0) {
+    } else if (latest === 0 && isScrolling) {
       setIsScrolling(false);
     }
   });
@@ -57,7 +58,7 @@ export default function Navbar({
       menuRef.current.classList.add('max-lg:right-0');
     }
   }
-
+  // no need for animate presence, redraw will notice the key change and start the animation
   return (
     <motion.nav
       // initial='initial'

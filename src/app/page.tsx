@@ -6,7 +6,7 @@ import CheckoutMore from '@/components/LandingPage/CheckoutMore/CheckoutMore';
 
 import GridImageCanvas from '@/components/HoverImageEffects/GridImageCanvas';
 import { getFeaturedProducts } from '../../src/db/prismaOperation';
-import Navbar, { NavbarComponent } from '@/components/Navbar';
+import Navbar from '@/components/Navbar';
 
 export default async function Home() {
   const featuredProducts = await getFeaturedProducts();
