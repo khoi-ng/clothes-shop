@@ -121,12 +121,15 @@ export default function Navbar({
             </a>
           </li>
           <li>
-            <a className='hover:underline' href='#'>
+            <a
+              className='hover:underline'
+              href='https://github.com/khoi-ng/clothes-shop'
+            >
               Github
             </a>
           </li>
           <li>
-            <a className='hover:underline' href='#'>
+            <a className='hover:underline' href='mailto:KhoiNG123@t-online.de'>
               Contact
             </a>
           </li>
@@ -142,7 +145,10 @@ export default function Navbar({
       </div>
 
       <div className='text-3xl flex gap-x-2'>
-        <FaShoppingCart className='cursor-pointer' />
+        <a href='/cart'>
+          <FaShoppingCart className='cursor-pointer' />
+        </a>
+
         <FaHeart className='cursor-pointer' />
 
         <div className='nav__toogle hidden max-lg:flex' id='nav-toggle'>
