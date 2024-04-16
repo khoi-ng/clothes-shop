@@ -33,7 +33,7 @@ export default async function GenderFashionPage({
         <h2 className='text-3xl sm:text-4xl pb-4 font-semibold capitalize'>
           {params.gender}&apos;s Fashion
         </h2>
-        <article className='flex flex-wrap gap-4'>
+        <article className='sm:mr-10  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4'>
           {genderObject?.categories?.map((category, index) => (
             <BentoCategoryCard
               category={category}
@@ -43,11 +43,11 @@ export default async function GenderFashionPage({
           ))}
         </article>
         {products && (
-          <article className='flex flex-wrap gap-4  '>
+          <article className='flex flex-wrap gap-4 sm:mr-10 '>
             <h4 className='font-bold text-lg pt-6 capitalize'>
               Popular Items for {products[0].genderName.toLocaleLowerCase()}
-            </h4>
-            <SimpleSwiperProductCarousel products={products} />{' '}
+            </h4>{' '}
+            <SimpleSwiperProductCarousel products={products} />
           </article>
         )}
       </section>

@@ -16,7 +16,7 @@ const ProductCard = ({ product, url }: { product: Products; url: string }) => {
     <Link
       href={url}
       className='bg-white 
-        w-[300px] 
+        w-full 
         h-[380px] 
         
         rounded 

@@ -24,7 +24,7 @@ const BentoCategoryCard = ({
   return (
     <Link
       className='bg-white 
-    w-[300px] 
+    max-w-[100%] 
     h-[200px] 
     border 
     rounded-lg
@@ -50,7 +50,9 @@ const BentoCategoryCard = ({
         plugins={[responsive()]}
       />
 
-      <div className='z-10 text-white pointer-events-none'>{category.name}</div>
+      <div className='z-10 text-center text-white pointer-events-none'>
+        {category.name}
+      </div>
     </Link>
   );
 };

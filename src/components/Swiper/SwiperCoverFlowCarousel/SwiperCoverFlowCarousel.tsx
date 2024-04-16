@@ -15,9 +15,14 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
-import { FeaturedProduct } from '@/interfaces';
+import { Products } from '@/interfaces';
 import cloudinary from '@/db/cloudinary';
-import { AdvancedImage, responsive } from '@cloudinary/react';
+import {
+  AdvancedImage,
+  lazyload,
+  placeholder,
+  responsive,
+} from '@cloudinary/react';
 import {
   // fit, fill,
   pad,
@@ -26,7 +31,7 @@ import {
 const SwiperCoverFlowCarousel = ({ items }: { items: string }) => {
   const myCld = cloudinary;
 
-  const itemsObj: FeaturedProduct[] | undefined = JSON.parse(items);
+  const itemsObj: Products[] | undefined = JSON.parse(items);
 
   const [swiperSlides, setSwiperSlides] = useState<
     React.JSX.Element[] | undefined
@@ -47,19 +52,24 @@ const SwiperCoverFlowCarousel = ({ items }: { items: string }) => {
 
       return (
         <SwiperSlide key={`carousel-${i}`} id={`carousel-slider-${i}`}>
-          <AdvancedImage
-            className='hover:scale-105 pt-5'
-            cldImg={newItemImg}
-            plugins={[responsive()]}
-            alt='slide_image'
-          />
-          <div className='short_description py-3.5 flex items-center justify-center relative font-oswald'>
-            <h2 className='text-3xl overflow-ellipsis leading-10'>
-              {item.name}
-            </h2>
-            <h3 className='text-3xl'>{`${price} €`}</h3>
-            <div className='opacity-0 hidden '>description</div>
-          </div>
+          <a
+            href={`/products/${item.genderName}/${item.categoryUriName}/${item.id}`}
+            key={`${item.id}-product-key`}
+          >
+            <AdvancedImage
+              className='hover:scale-105 pt-5'
+              cldImg={newItemImg}
+              plugins={[responsive(), lazyload(), placeholder()]}
+              alt='slide_image'
+            />
+            <div className='short_description py-3.5 flex items-center justify-center relative font-oswald'>
+              <h2 className='text-3xl overflow-ellipsis leading-10'>
+                {item.name}
+              </h2>
+              <h3 className='text-3xl'>{`${price} €`}</h3>
+              <div className='opacity-0 hidden '>description</div>
+            </div>
+          </a>
         </SwiperSlide>
       );
     });

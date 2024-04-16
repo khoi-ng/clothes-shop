@@ -116,6 +116,4 @@ const SimpleSwiperProductCarousel = ({
   );
 };
 
-const SimpleSwiperItem = () => {};
-
 export default SimpleSwiperProductCarousel;

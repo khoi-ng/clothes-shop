@@ -49,6 +49,7 @@ export const getFeaturedProducts = async () => {
           description: true,
           genderName: true,
           categoryUriName: true,
+          id: true,
         },
       },
     },
