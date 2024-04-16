@@ -1,8 +1,4 @@
 import { notFound } from 'next/navigation';
-import prisma from '@/db/prisma';
-import cloudinary from '@/db/cloudinary';
-import { thumbnail } from '@cloudinary/url-gen/actions/resize';
-import { AdvancedImage, responsive } from '@cloudinary/react';
 import Product from '../../../../../components/Product/Product';
 import { ICategory, Products } from '@/interfaces';
 import { getCategoryByID, getProduct } from '@/db/prismaOperation';

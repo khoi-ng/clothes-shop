@@ -1,0 +1,19 @@
+.grid-row {
+  display: grid;
+  grid-template-columns: 100px 150px 150px repeat(auto-fill, 150px);
+  //   background-color: red;
+  border-bottom: 1px solid rgb(173, 173, 173);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  & > div {
+    padding-left: 1rem;
+  }
+}
+
+.grid-row:first-child {
+  border-top: 1px solid rgb(173, 173, 173);
+}
+
+.grid-row:last-child {
+  margin-bottom: 2rem;
+}

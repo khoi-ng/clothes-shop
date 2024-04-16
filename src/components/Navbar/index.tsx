@@ -3,8 +3,10 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMotionValueEvent, useScroll, motion } from 'framer-motion';
+import { CartStorage, getCart } from '@/db/sessionStorageCart';
+import { useCartContext } from '@/Context/ItemCartProvider';
 
 const NavAnimations = {
   initial: {
@@ -35,6 +37,7 @@ export default function Navbar({
   const [isScrolling, setIsScrolling] = useState(false);
 
   const { scrollY } = useScroll();
+  const [cart, _] = useCartContext();
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     // console.log('Page scroll: ', latest);
@@ -145,8 +148,13 @@ export default function Navbar({
       </div>
 
       <div className='text-3xl flex gap-x-2'>
-        <a href='/cart'>
+        <a href='/cart' className='relative'>
           <FaShoppingCart className='cursor-pointer' />
+          <span className='absolute -top-3  -left-3 rounded-full bg-[#438cb6]  text-xs w-7 h-7 text-center '>
+            <p className='flex items-center justify-center h-full font-semibold'>
+              {cart.quantity <= 99 ? cart.quantity : '+99'}
+            </p>
+          </span>
         </a>
 
         <FaHeart className='cursor-pointer' />

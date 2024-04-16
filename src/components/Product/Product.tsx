@@ -10,6 +10,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import SimpleSwiperProductCarousel from '../Swiper/SimpleSwiperProductCarousel/SimpleSwiperProductCarousel';
+import { addProductToCart, getCart } from '@/db/sessionStorageCart';
+import { useCartContext } from '@/Context/ItemCartProvider';
 
 const Product = ({
   product,
@@ -18,6 +20,8 @@ const Product = ({
   product: Products;
   category: ICategory;
 }) => {
+  const [cart, setCart] = useCartContext();
+
   const otherProducts = category.products.filter(
     (catproduct) => catproduct.id !== product.id
   );
@@ -69,7 +73,20 @@ const Product = ({
           </div>
           <div className='pt-2 sm:pt-8 text-right'>
             <p className='text-4xl font-semibold'>{product.price}€</p>
-            <button className='mt-4 px-5 py-2 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-full'>
+            <button
+              className='mt-4 px-5 py-2 bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-full'
+              onClick={() => {
+                setCart(
+                  addProductToCart({
+                    name: product.name,
+                    id: product.id,
+                    price: product.price,
+                    quantity: 1,
+                    imageUrl: product.imageUrl,
+                  })
+                );
+              }}
+            >
               Add to cart
             </button>
           </div>

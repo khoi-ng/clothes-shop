@@ -1,3 +1,4 @@
+import ShoppingCart from '@/components/ShoppingCart/ShoppingCart';
 import React from 'react';
 
 const page = () => {
@@ -10,10 +11,11 @@ const page = () => {
   //  Add delete & quantity functionality
 
   return (
-    <section className=' text-black max-md:mx-6 mx-20 pt-32 md:mx-10 pb-20 w-full'>
+    <section className=' max-md:mx-6 mx-24 pt-36 '>
       <h2 className='text-2xl sm:text-3xl pb-4 font-semibold capitalize'>
         Shopping Cart
       </h2>
+      <ShoppingCart />
     </section>
   );
 };
