@@ -1,14 +1,7 @@
-import { HoverImageBlockyEffect } from '@/components/HoverImageEffects/HoverImageBlockyEffect';
-import img from '../assets/img/alireza-dolati-OVS3rqXq9gg-unsplash.webp';
-import Image from 'next/image';
-import ParallaxSlider from '@/components/ParallaxSlider/ParallaxSlider';
-
 export default function Products() {
   return (
     <section>
       <article className=' pt-36'>
-        {/* <ParallaxSlider /> */}
-
         {/* <div className='max-h-[700px] h-auto relative' id='hoverIMGdiv'>
           <Image src={img} alt='test' className='invisible' />
           <HoverImageBlockyEffect

@@ -3,10 +3,7 @@ import { notFound, useParams, usePathname } from 'next/navigation';
 import { Gender, Products } from '@/interfaces';
 import BentoCategoryCard from '@/components/BentoCategoryCard/BentoCategoryCard';
 import Banner from '@/components/Banner';
-import {
-  getGenderCategories,
-  getGenderCategoriesAndFeaturedProducts,
-} from '@/db/prismaOperation';
+import { getGenderCategoriesAndFeaturedProducts } from '@/db/prismaOperation';
 import SimpleSwiperProductCarousel from '@/components/Swiper/SimpleSwiperProductCarousel/SimpleSwiperProductCarousel';
 
 export default async function GenderFashionPage({
