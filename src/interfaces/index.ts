@@ -24,6 +24,7 @@ export interface Gender {
   updatedAt: string;
   categories: ICategory[] | null;
   bannerUrls: string[];
+  featuredCollection?: FeaturedCollection;
 }
 
 export interface Products {
@@ -34,4 +35,13 @@ export interface Products {
   price: number;
   createdAt: string;
   categoryId: string;
+  genderName: string;
+  categoryUriName: string;
+}
+
+export interface FeaturedCollection {
+  id: string;
+  name: string;
+  products: Products[];
+  genderId: string;
 }

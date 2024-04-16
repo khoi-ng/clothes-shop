@@ -1,0 +1,43 @@
+.simpleSwiperSlider {
+  .swiper-slide {
+    max-width: 320px;
+  }
+  .swiper-wrapper:has(:nth-child(n + 5)) {
+    .swiper-slide {
+      max-width: 100% !important;
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    .swiper-slide {
+      max-width: 100% !important;
+    }
+  }
+
+  .swiper-button-prev {
+    padding: 0;
+    background-color: black;
+    border-radius: 50%;
+    &:after {
+      display: none !important;
+    }
+    svg {
+      color: aliceblue;
+    }
+    height: 30px;
+    width: 30px;
+    // left: calc(50% - 14rem);
+  }
+  .swiper-button-next {
+    padding: 0;
+    background-color: black;
+    border-radius: 50%;
+    &:after {
+      display: none !important;
+    }
+    svg {
+      color: aliceblue;
+    }
+    height: 30px;
+    width: 30px;
+  }
+}

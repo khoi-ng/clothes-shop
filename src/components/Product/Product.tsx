@@ -4,6 +4,12 @@ import { thumbnail } from '@cloudinary/url-gen/actions/resize';
 import { AdvancedImage, responsive } from '@cloudinary/react';
 import { ICategory, Products } from '@/interfaces';
 import { Cloudinary } from '@cloudinary/url-gen/index';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import SimpleSwiperProductCarousel from '../Swiper/SimpleSwiperProductCarousel/SimpleSwiperProductCarousel';
 
 const Product = ({
   product,
@@ -15,6 +21,8 @@ const Product = ({
   const otherProducts = category.products.filter(
     (catproduct) => catproduct.id !== product.id
   );
+
+  // console.log('otherProducts', otherProducts);
   // console.log(otherProducts);
 
   const myCld = cloudinary;
@@ -70,44 +78,9 @@ const Product = ({
       <div className='py-3 md:py-10'></div>
       <h4 className='font-bold text-lg pb-6'>You might also like</h4>
 
-      <div className='flex flex-wrap justify-center sm:justify-normal gap-4 w-full'>
-        {otherProducts.map((otherProduct) => {
-          const otherProductIMG = myCld.image(otherProduct.imageUrl);
-
-          return (
-            <a
-              href={`${otherProduct.id}`}
-              key={`${otherProduct.id}-product-key`}
-              className='bg-white w-[250px] rounded-lg        items-center justify-center font-roboto   shadow-sm   hover:shadow-xl hover:shadow-gray-100 transition-all gap-2'
-            >
-              <article className='flex-col  rounded-lg    '>
-                <div className='flex  p-10 pb-3 m-auto h-[250px]'>
-                  <AdvancedImage
-                    className='object-contain h-full hover:scale-105 transition-all m-auto'
-                    cldImg={otherProductIMG}
-                    plugins={[responsive()]}
-                    alt='adf_image'
-                  />
-                </div>
-
-                <div className='flex flex-col p-6  mt-auto rounded-lg    '>
-                  <h3 className='font-semibold truncate'>
-                    {otherProduct.name}
-                  </h3>
-                  <p className='text-gray-600 text-sm truncate'>
-                    {otherProduct.description
-                      ? otherProduct.description
-                      : 'No Description yet'}
-                  </p>
-                  <div className='text-right mt-4'>
-                    <span className='font-semibold'>{otherProduct.price}€</span>
-                  </div>
-                </div>
-              </article>
-            </a>
-          );
-        })}
-      </div>
+      {/* <div className='flex-wrap justify-center sm:justify-normal gap-4 w-full'> */}
+      <SimpleSwiperProductCarousel products={otherProducts} />
+      {/* </div> */}
     </>
   );
 };

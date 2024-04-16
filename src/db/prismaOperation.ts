@@ -14,9 +14,25 @@ export const getProduct = async (id: string) => {
       price: true,
       createdAt: true,
       categoryId: true,
+      categoryUriName: true,
+      genderName: true,
     },
   });
   return product;
+};
+
+export const getGender = async (genderName: GENDER) => {
+  const gender = await prisma.gender.findFirst({
+    where: {
+      name: genderName,
+    },
+    select: {
+      id: true,
+      name: true,
+      featuredCollection: true,
+    },
+  });
+  return gender;
 };
 
 export const getFeaturedProducts = async () => {
@@ -31,6 +47,8 @@ export const getFeaturedProducts = async () => {
           price: true,
           name: true,
           description: true,
+          genderName: true,
+          categoryUriName: true,
         },
       },
     },
@@ -52,6 +70,8 @@ export const getCategoryByID = async (categoryID: string) => {
           description: true,
           price: true,
           categoryId: true,
+          categoryUriName: true,
+          genderName: true,
         },
       },
     },
@@ -89,6 +109,35 @@ export const getGenderCategories = async (gender: GENDER) => {
       name: gender,
     },
     include: {
+      categories: {
+        select: {
+          id: true,
+          name: true,
+          genderName: true,
+          uriName: true,
+          bentoUrls: true,
+        },
+      },
+    },
+  });
+  return genderFromDB;
+};
+
+export const getGenderCategoriesAndFeaturedProducts = async (
+  gender: GENDER
+) => {
+  const genderFromDB = await prisma.gender.findFirst({
+    where: {
+      name: gender,
+    },
+    include: {
+      featuredCollection: {
+        select: {
+          id: true,
+          name: true,
+          products: true,
+        },
+      },
       categories: {
         select: {
           id: true,

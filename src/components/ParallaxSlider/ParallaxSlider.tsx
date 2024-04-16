@@ -73,8 +73,8 @@ const ParallaxSlider = ({
       // this start from 0 and as the mouse moves it gets negative or positive
       const mouseDelta = (x - initialMouseXData.current) * mouseSpeed;
       const maxDelta = containerWidth / 2;
-      console.log('container', containerWidth);
-      console.log('wholeWidth', wholeWidthRef.current);
+      // console.log('container', containerWidth);
+      // console.log('wholeWidth', wholeWidthRef.current);
 
       // mouseDelta converted in percentage to relative size of container, container is 100%
       const percentage = (mouseDelta / maxDelta) * 100;

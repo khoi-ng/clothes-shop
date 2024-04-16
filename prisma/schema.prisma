@@ -16,38 +16,45 @@ enum Genders {
 }
 
 model Gender {
-  id                 String              @id @default(cuid())
-  name               Genders             @unique
-  categories         Category[]
-  featuredCollection FeaturedCollection?
-  updatedAt          DateTime            @updatedAt
-  bannerUrls         String[]
+  id                      String                    @id @default(cuid())
+  name                    Genders                   @unique
+  categories              Category[]
+  featuredCollection      FeaturedCollection?
+  updatedAt               DateTime                  @updatedAt
+  bannerUrls              String[]
+  products                Product[]
+  complemantaryCollection ComplemantaryCollection[]
 }
 
 model Category {
-  id         String    @id @default(cuid())
-  name       String
-  gender     Gender    @relation(fields: [genderName], references: [name])
-  genderName Genders
-  products   Product[]
-  uriName    String?
-  bentoUrls  String[]
+  id                      String                    @id @default(cuid())
+  name                    String
+  gender                  Gender                    @relation(fields: [genderName], references: [name])
+  genderName              Genders
+  products                Product[]
+  uriName                 String?
+  bentoUrls               String[]
+  complementaryCollection ComplemantaryCollection[]
 
+  @@unique([id, uriName])
   @@index([genderName])
 }
 
 // store the image uri from cloudinary, images are not directly saved in my db
 model Product {
-  id                   String              @id @default(cuid())
-  name                 String
-  categorie            Category            @relation(fields: [categoryId], references: [id])
-  categoryId           String
-  imageUrl             String
-  featuredCollection   FeaturedCollection? @relation(fields: [featuredCollectionId], references: [id])
-  featuredCollectionId String?
-  createdAt            DateTime            @default(now())
-  description          String?
-  price                Decimal
+  id                      String                    @id @default(cuid())
+  name                    String
+  categorie               Category?                 @relation(fields: [categoryId, categoryUriName], references: [id, uriName])
+  categoryId              String
+  categoryUriName         String?
+  imageUrl                String
+  featuredCollection      FeaturedCollection[]
+  createdAt               DateTime                  @default(now())
+  description             String?
+  price                   Decimal
+  gender                  Gender?                   @relation(fields: [genderName], references: [name])
+  genderName              Genders?
+  complemantaryCollection ComplemantaryCollection[]
 
   @@index([categoryId])
 }
@@ -59,4 +66,14 @@ model FeaturedCollection {
   gender    Gender?   @relation(fields: [genderId], references: [id])
   genderId  String?   @unique
   updatedAt DateTime  @updatedAt
+}
+
+model ComplemantaryCollection {
+  id         String     @id @default(cuid())
+  name       String
+  products   Product[]
+  category   Category[]
+  gender     Gender?    @relation(fields: [genderName], references: [name])
+  genderName Genders?
+  updatedAt  DateTime   @updatedAt
 }

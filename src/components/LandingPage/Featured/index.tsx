@@ -1,7 +1,7 @@
 'use client';
 import gsap from 'gsap';
 import React from 'react';
-import SwiperSlideCarousel from '@/components/Swiper/SwiperSlideCarousel';
+import SwiperCoverFlowCarousel from '@/components/Swiper/SwiperCoverFlowCarousel/SwiperCoverFlowCarousel';
 import './Featured.scss';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -157,7 +157,7 @@ const Featured = ({ featuredProducts }: { featuredProducts: string }) => {
         </div>
 
         <div className='feature-carousel-wrapper h-full w-full flex items-center justify-center  relative opacity-0'>
-          <SwiperSlideCarousel items={featuredProducts} />
+          <SwiperCoverFlowCarousel items={featuredProducts} />
         </div>
       </article>
     </section>

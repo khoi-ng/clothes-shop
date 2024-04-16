@@ -1,28 +1,13 @@
 import { notFound, useParams, usePathname } from 'next/navigation';
-import prisma from '@/db/prisma';
-import { GENDER, Gender } from '@/interfaces';
+
+import { Gender, Products } from '@/interfaces';
 import BentoCategoryCard from '@/components/BentoCategoryCard/BentoCategoryCard';
 import Banner from '@/components/Banner';
-
-const getGenderCategories = async (gender: GENDER) => {
-  const genderFromDB = await prisma.gender.findFirst({
-    where: {
-      name: gender,
-    },
-    include: {
-      categories: {
-        select: {
-          id: true,
-          name: true,
-          genderName: true,
-          uriName: true,
-          bentoUrls: true,
-        },
-      },
-    },
-  });
-  return genderFromDB;
-};
+import {
+  getGenderCategories,
+  getGenderCategoriesAndFeaturedProducts,
+} from '@/db/prismaOperation';
+import SimpleSwiperProductCarousel from '@/components/Swiper/SimpleSwiperProductCarousel/SimpleSwiperProductCarousel';
 
 export default async function GenderFashionPage({
   params,
@@ -30,16 +15,20 @@ export default async function GenderFashionPage({
   params: { gender: string };
 }) {
   const genderName = params.gender.toLocaleUpperCase();
+
   if (genderName === 'MEN' || genderName === 'WOMEN') {
-    const categories = await getGenderCategories(genderName);
+    const categories = await getGenderCategoriesAndFeaturedProducts(genderName);
 
     const genderObject: Gender | null = await JSON.parse(
       JSON.stringify(categories)
     );
+
+    const products: Products[] | undefined = await genderObject
+      ?.featuredCollection?.products;
     // console.log(genderObject?.bannerUrls);
 
     return (
-      <section className=' text-black max-md:mx-0 mx-10'>
+      <section className=' text-black sm:mx-5 md:mx-10 pb-20 w-full'>
         <Banner />
         <h2 className='text-3xl sm:text-4xl pb-4 font-semibold capitalize'>
           {params.gender}&apos;s Fashion
@@ -53,6 +42,14 @@ export default async function GenderFashionPage({
             />
           ))}
         </article>
+        {products && (
+          <article className='flex flex-wrap gap-4  '>
+            <h4 className='font-bold text-lg pt-6 capitalize'>
+              Popular Items for {products[0].genderName.toLocaleLowerCase()}
+            </h4>
+            <SimpleSwiperProductCarousel products={products} />{' '}
+          </article>
+        )}
       </section>
     );
   }

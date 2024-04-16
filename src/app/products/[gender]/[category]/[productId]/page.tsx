@@ -16,6 +16,7 @@ export default async function Category({
 
   if (product && product.categoryId) {
     const productObj: Products = JSON.parse(JSON.stringify(product));
+
     const category = await getCategoryByID(product?.categoryId);
     const categoryObject: ICategory | null = await JSON.parse(
       JSON.stringify(category)

@@ -6,7 +6,7 @@ import {
   EffectCoverflow,
   Autoplay,
 } from 'swiper/modules';
-import './SwiperSlideCarousel.scss';
+import './SwiperCoverFlowCarousel.scss';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -23,7 +23,7 @@ import {
   pad,
 } from '@cloudinary/url-gen/actions/resize';
 
-const SwiperSlideCarousel = ({ items }: { items: string }) => {
+const SwiperCoverFlowCarousel = ({ items }: { items: string }) => {
   const myCld = cloudinary;
 
   const itemsObj: FeaturedProduct[] | undefined = JSON.parse(items);
@@ -75,7 +75,11 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
   }>({ title: '', description: '' });
 
   function showCurrentSwiperInfo(swiper: SwiperClass) {
-    if (itemsObj && currentActiveIndex.current !== swiper.realIndex) {
+    if (
+      itemsObj &&
+      itemsObj[swiper.realIndex] &&
+      currentActiveIndex.current !== swiper.realIndex
+    ) {
       const currentItem = itemsObj[swiper.realIndex];
       const content = {
         title: currentItem.name,
@@ -88,7 +92,7 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
   }
 
   return (
-    <div className='w-10/12'>
+    <div className='w-10/12 swiperCoverFlow'>
       <Swiper
         effect={'coverflow'}
         grabCursor={true}
@@ -166,4 +170,4 @@ const SwiperSlideCarousel = ({ items }: { items: string }) => {
   );
 };
 
-export default SwiperSlideCarousel;
+export default SwiperCoverFlowCarousel;

@@ -162,13 +162,13 @@ const CheckoutMore = () => {
                 id='menFashionImgLink'
               >
                 <Image
-                  className='max-h-[700px]  w-auto invisible'
-                  src={womenImg}
+                  className='max-h-[700px]  w-auto sm:invisible'
+                  src={menImg}
                   alt='women'
                 ></Image>
 
                 <HoverImageBlockyEffect
-                  className='w-full h-full top-0 !absolute'
+                  className='w-full h-full top-0 !absolute hidden sm:block'
                   img={menImg}
                   aspectRatio={[1, 1.5]}
                   parentId='menFashionImgLink'
@@ -188,13 +188,13 @@ const CheckoutMore = () => {
                 id='womenFashionImgLink'
               >
                 <Image
-                  className='max-h-[700px]  w-auto invisible'
+                  className='max-h-[700px]  w-auto sm:invisible'
                   src={womenImg}
                   alt='women'
                 ></Image>
 
                 <HoverImageBlockyEffect
-                  className='w-full h-full top-0 !absolute'
+                  className='w-full h-full top-0 !absolute hidden sm:block'
                   img={womenImg}
                   aspectRatio={[1, 1.5]}
                   parentId='womenFashionImgLink'
